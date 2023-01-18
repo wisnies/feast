@@ -1,0 +1,35 @@
+{
+  "Named import into default export": {
+    "prefix": "nim",
+    "body": ["import {$1} from './$1'", "export default $1"],
+    "description": "Named import into default export"
+  },
+  "Typed api handler function": {
+    "prefix": "ahf",
+    "body": [
+      "import type { NextApiRequest, NextApiResponse } from 'next';",
+      "",
+      "type Data = {",
+      "$1",
+      "};",
+      "",
+      "const handler = (req: NextApiRequest, res: NextApiResponse<Data>) => {",
+      "$2",
+      "};",
+      "",
+      "export default handler;"
+    ],
+    "description": "Typed api handler function"
+  },
+  "Bootstrap component style file": {
+    "prefix": "bsc",
+    "body": [
+      "import styled from 'styled-components'",
+      "",
+      "export const Container = styled.$1`",
+      "  $2",
+      "`"
+    ],
+    "description": "Bootstrap component style file"
+  }
+}
