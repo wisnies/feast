@@ -31,5 +31,15 @@
       "`"
     ],
     "description": "Bootstrap component style file"
+  },
+  "Styled-components props theme function": {
+    "prefix": "scptf",
+    "body": "${(props: { theme: ITheme }) => $1};",
+    "description": "Styled-components props theme function"
+  },
+  "Styled-components props type with theme": {
+    "prefix": "scp",
+    "body": ["type $1Props = {", "theme: ITheme", "}"],
+    "description": "Styled-components props type with theme"
   }
 }
