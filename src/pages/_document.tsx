@@ -1,5 +1,6 @@
 import dotenv from 'dotenv-safe';
 import { Html, Head, Main, NextScript } from 'next/document';
+import '@/libs/global.d';
 
 dotenv.config();
 

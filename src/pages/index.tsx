@@ -1,14 +1,15 @@
 import { FC } from 'react';
 import Head from 'next/head';
+import MainHero from '@/components/hero/MainHero';
 
 const HomePage: FC = () => {
   return (
-    <div>
+    <>
       <Head>
         <title>Home Page</title>
       </Head>
-      <h1>Home Page</h1>
-    </div>
+      <MainHero />
+    </>
   );
 };
 

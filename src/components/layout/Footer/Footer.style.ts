@@ -88,6 +88,7 @@ export const FooterRepoText = styled(StyledText)`
 export const FooterRepoLink = styled.a`
   margin-top: 20px;
   font-size: 12px;
+  font-family: ${(props: { theme: ITheme }) => props.theme.fontPrimary};
   font-weight: 400;
   letter-spacing: 2px;
   color: ${(props: { theme: ITheme }) => props.theme.color.accent1};
