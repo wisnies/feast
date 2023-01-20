@@ -9,7 +9,7 @@ type LayoutProps = {
   children: ReactNode;
 };
 
-const Layout: FC<LayoutProps> = ({ children }: LayoutProps) => {
+export const Layout: FC<LayoutProps> = ({ children }: LayoutProps) => {
   return (
     <ThemeProvider theme={theme}>
       <Header />
@@ -18,5 +18,3 @@ const Layout: FC<LayoutProps> = ({ children }: LayoutProps) => {
     </ThemeProvider>
   );
 };
-
-export default Layout;

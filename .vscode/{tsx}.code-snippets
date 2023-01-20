@@ -9,8 +9,7 @@
       "   return (",
       "       <Container>$1 Component</Container>",
       "   )",
-      "}",
-      "export default $1"
+      "}"
     ],
     "description": "Functional component without props"
   },
@@ -24,12 +23,11 @@
       "  $2: $3",
       "}",
       "",
-      "const $1:FC<$1Props> = ({$2}:$1Props) => {",
+      "export const $1:FC<$1Props> = ({$2}:$1Props) => {",
       "  return (",
       "    <Container>$1 Component</Container>",
       "  )",
-      "}",
-      "export default $1"
+      "}"
     ],
     "description": "Functional component with props"
   },

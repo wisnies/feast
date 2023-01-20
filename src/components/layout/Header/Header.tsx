@@ -16,14 +16,19 @@ import {
   HeaderNavBtnIcon,
 } from './Header.style';
 
-const Header: FC = () => {
+export const Header: FC = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
     <HeaderContainer>
       <HeaderInner>
         <HeaderLogo href='/'>
-          <Image src='/assets/logo/logo-text-a1.png' alt='Feast logo' fill />
+          <Image
+            src='/assets/logo/logo-text-a1.png'
+            alt='Feast logo'
+            fill
+            sizes='10vw'
+          />
         </HeaderLogo>
         <HeaderNav isOpen={isOpen}>
           <HeaderNavList>
@@ -34,7 +39,12 @@ const Header: FC = () => {
             ))}
           </HeaderNavList>
           <HeaderNavMobileLogoContainer>
-            <Image src='/assets/logo/logo-full-2c.png' alt='Feast logo' fill />
+            <Image
+              src='/assets/logo/logo-full-2c.png'
+              alt='Feast logo'
+              fill
+              sizes='10vw'
+            />
           </HeaderNavMobileLogoContainer>
         </HeaderNav>
         <HeaderNavBtn onClick={() => setIsOpen(!isOpen)}>
@@ -51,5 +61,3 @@ const Header: FC = () => {
     </HeaderContainer>
   );
 };
-
-export default Header;

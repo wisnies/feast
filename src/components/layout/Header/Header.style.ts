@@ -7,7 +7,7 @@ export const HeaderContainer = styled.header`
   width: 100%;
   height: 80px;
   background-color: ${(props: { theme: ITheme }) => props.theme.color.primary};
-  position: sticky;
+  position: fixed;
   top: 0;
   left: 0;
   right: 0;
