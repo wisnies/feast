@@ -1,6 +1,4 @@
-import { IEvent } from '@/libs/interfaces/Event.interface';
-
-export const events: IEvent[] = [
+export const events = [
   {
     title: 'Test Event 1',
     date: '2024-01-01T18:00:00Z',

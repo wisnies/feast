@@ -15,3 +15,8 @@ export const StyledLink = styled(Link)`
   font-family: ${(props: { theme: ITheme }) => props.theme.fontPrimary};
   letter-spacing: 1px;
 `;
+export const Ellipsis = styled.div`
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+`;

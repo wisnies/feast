@@ -1,7 +1,8 @@
+import Link from 'next/link';
 import styled from 'styled-components';
 import { ITheme } from '@/libs/interfaces/Theme.interface';
 import { size, device } from '@/styles/devices';
-import { StyledTitle } from '@/styles/typography';
+import { StyledLink, StyledText, StyledTitle } from '@/styles/typography';
 
 export const MHContainer = styled.div`
   position: relative;
@@ -53,21 +54,20 @@ export const MHContainerInner = styled.div`
   height: 100%;
   max-width: ${size.laptopL};
   transform: translateX(-50%);
+  display: grid;
+  grid-template-rows: 3fr 1fr 2fr;
+`;
+export const MHSection = styled.section`
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
-  @media ${device.tablet} {
-    padding: 0 10px;
-  }
-  @media ${device.laptopL} {
-    padding: 0;
-  }
 `;
-export const MHTitleSection = styled.section`
-  display: flex;
-  flex-direction: column;
-  padding: 20px 5px;
-  margin-bottom: 40px;
+export const MHSectionL = styled(MHSection)`
+  align-items: flex-start;
+  padding: 0 5px;
+`;
+export const MHSectionR = styled(MHSection)`
+  align-items: flex-end;
 `;
 export const MHMapLink = styled.a`
   margin: 10px 0;
@@ -80,7 +80,7 @@ export const MHMapLink = styled.a`
   transition: all 0.2s ease;
   padding-top: 2px;
   &:hover {
-    color: ${(props: { theme: ITheme }) => `${props.theme.color.accent1}aa`};
+    color: ${(props: { theme: ITheme }) => props.theme.color.accent1Alfa};
     padding-bottom: 2px;
     padding-top: 0;
   }
@@ -116,20 +116,111 @@ export const MHTitle = styled(StyledTitle)`
     margin-bottom: 24px;
   }
 `;
-export const MHButtonContainer = styled.div``;
-export const MHEvent = styled.div`
+type DataLoadingProps = {
+  isLoading: boolean;
+};
+export const MHOpaqeContainer = styled.div<DataLoadingProps>`
+  width: fit-content;
+  transition: opacity 0.3s ease;
+  opacity: ${(props) => (props.isLoading ? 0 : 1)};
+  pointer-events: ${(props) => (props.isLoading ? 'none' : 'all')};
+`;
+
+export const MHEvent = styled(Link)`
   align-self: flex-end;
-  padding: 5px 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  padding: 0 5px;
   border-right: 4px solid
     ${(props: { theme: ITheme }) => props.theme.color.accent1};
+
+  &:hover {
+    padding: 0 7px 0 3px;
+    border-color: ${(props: { theme: ITheme }) =>
+      props.theme.color.accent1Alfa};
+    & h5 {
+      color: ${(props: { theme: ITheme }) => props.theme.color.accent1Alfa};
+    }
+    & p {
+      color: ${(props: { theme: ITheme }) => props.theme.color.secondaryAlfa};
+    }
+  }
+
+  @media ${device.laptop} {
+    padding: 0 10px;
+    transition: all 0.3s ease;
+    &:hover {
+      padding: 0 15px 0 5px;
+    }
+  }
+`;
+export const MHEventTitle = styled(StyledTitle)`
+  color: ${(props: { theme: ITheme }) => props.theme.color.accent1};
+  font-size: 14px;
+  margin-bottom: 5px;
+  @media ${device.mobileL} {
+    font-size: 16px;
+  }
+  @media ${device.tablet} {
+    font-size: 18px;
+  }
+  @media ${device.laptop} {
+    transition: all 0.3s ease;
+  }
+`;
+export const MHEventText = styled(StyledText)`
+  font-size: 12px;
+  color: ${(props: { theme: ITheme }) => props.theme.color.secondary};
+  @media ${device.mobileL} {
+    font-size: 14px;
+  }
+  @media ${device.tablet} {
+    font-size: 16px;
+  }
+  @media ${device.laptop} {
+    transition: all 0.3s ease;
+  }
 `;
 export const MHEventBox = styled.div`
-  width: 100%;
+  width: calc(100vw - 10px);
   max-width: ${size.mobileL};
   background-color: ${(props: { theme: ITheme }) => props.theme.color.primary};
   padding: 10px 5px;
 
   @media ${device.mobileL} {
     padding: 20px 10px;
+  }
+`;
+export const MHEventBoxTitle = styled(StyledTitle)`
+  color: ${(props: { theme: ITheme }) => props.theme.color.secondary};
+  font-size: 16px;
+  margin-bottom: 10px;
+  @media ${device.mobileL} {
+    font-size: 20px;
+    margin-bottom: 20px;
+  }
+`;
+export const MHEventBoxLink = styled(StyledLink)`
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: nowrap;
+  font-size: 12px;
+  color: ${(props: { theme: ITheme }) => props.theme.color.secondary};
+  margin-bottom: 5px;
+  &:hover {
+    color: ${(props: { theme: ITheme }) => props.theme.color.secondaryAlfa};
+  }
+  &:last-of-type {
+    margin-bottom: 0;
+  }
+  @media ${device.mobileM} {
+    font-size: 14px;
+  }
+  @media ${device.mobileL} {
+    font-size: 16px;
+  }
+  @media ${device.laptop} {
+    transition: all 0.3s ease;
   }
 `;
