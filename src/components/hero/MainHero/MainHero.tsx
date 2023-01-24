@@ -70,10 +70,10 @@ export const MainHero: FC = () => {
           <MHMapLink>Where to find us</MHMapLink>
           <MHTitle as='h1'>True Texan BBQ</MHTitle>
           <ButtonContainer>
-            <LinkButton href='/menu' color='primary'>
+            <LinkButton href='/menu' color='accent1'>
               menu
             </LinkButton>
-            <LinkButton href='/book-table' color='secondary'>
+            <LinkButton href='/book-table' color='accent3'>
               book table
             </LinkButton>
           </ButtonContainer>

@@ -20,3 +20,4 @@ export const Ellipsis = styled.div`
   white-space: nowrap;
   overflow: hidden;
 `;
+export const LongText = styled(StyledText)``;

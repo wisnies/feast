@@ -32,6 +32,7 @@ type LinkButtonProps = {
     | 'error'
     | 'success';
   variant?: 'outline';
+  position?: 'center' | 'left' | 'right';
 };
 export const LinkButton = styled(Link)<LinkButtonProps>`
   width: 80%;
@@ -41,15 +42,59 @@ export const LinkButton = styled(Link)<LinkButtonProps>`
   font-size: 12px;
   text-transform: capitalize;
   text-align: center;
+  ${(props) => {
+    switch (props.position) {
+      case 'center':
+        return `
+          margin-left: auto;
+          margin-right: auto;
+        `;
+      case 'right':
+        return `
+          margin-left: auto;
+          margin-right: 0;
+        `;
+      case 'left':
+      default:
+        return `
+          margin-left: 0;
+          margin-right: auto;
+        `;
+    }
+  }}
 
   ${(props) => {
     switch (props.color) {
+      case 'accent1':
+        return `
+            background-color: ${props.theme.color.accent1};
+            color: ${props.theme.color.textPrimary};
+            &:hover {
+                background-color: ${props.theme.color.accent1Alfa};
+            }
+          `;
+      case 'accent2':
+        return `
+            background-color: ${props.theme.color.accent2};
+            color: ${props.theme.color.textPrimary};
+            &:hover {
+                background-color: ${props.theme.color.accent2Alfa};
+            }
+          `;
+      case 'accent3':
+        return `
+            background-color: ${props.theme.color.accent3};
+            color: ${props.theme.color.textPrimary};
+            &:hover {
+                background-color: ${props.theme.color.accent3Alfa};
+            }
+          `;
       case 'secondary':
         return `
             background-color: ${props.theme.color.secondary};
             color: ${props.theme.color.textSecondary};
             &:hover {
-                background-color: ${`${props.theme.color.secondary}80`};
+                background-color: ${props.theme.color.secondaryAlfa};
             }
           `;
       case 'primary':
@@ -58,7 +103,7 @@ export const LinkButton = styled(Link)<LinkButtonProps>`
             background-color: ${props.theme.color.primary};
             color: ${props.theme.color.textPrimary};
             &:hover {
-                background-color: ${`${props.theme.color.primary}80`};
+                background-color: ${props.theme.color.primaryAlfa};
             }
           `;
     }
