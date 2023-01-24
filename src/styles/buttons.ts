@@ -21,6 +21,15 @@ export const ButtonContainer = styled.div`
     grid-gap: 8px;
   }
 `;
+export const SingleButtonContainer = styled.div`
+  width: 100%;
+  max-width: 200px;
+  margin-top: 10px;
+  @media ${device.mobileL} {
+    align-self: flex-end;
+    margin-top: 20px;
+  }
+`;
 
 type LinkButtonProps = {
   color:
@@ -42,6 +51,7 @@ export const LinkButton = styled(Link)<LinkButtonProps>`
   font-size: 12px;
   text-transform: capitalize;
   text-align: center;
+  display: block;
   ${(props) => {
     switch (props.position) {
       case 'center':
