@@ -20,7 +20,6 @@ export const CITitle = styled(StyledTitle)<IsFooterProps>`
   font-size: 18px;
   color: ${(props: { theme: ITheme; isFooter: boolean }) =>
     props.isFooter ? props.theme.color.secondary : props.theme.color.primary};
-  /* margin-bottom: ${(props) => (props.isFooter ? '10px' : '20px')}; */
   margin-bottom: 10px;
   @media ${device.mobileM} {
     margin-bottom: 20px;
@@ -47,7 +46,7 @@ export const CILink = styled(Link)`
     color: ${(props: { theme: ITheme }) => props.theme.color.accent1Alfa};
   }
 
-  @media ${device.mobileM} {
+  @media ${device.mobileL} {
     font-size: 18px;
   }
 
@@ -67,7 +66,7 @@ export const CIExternalLink = styled.a`
     text-decoration: underline;
     color: ${(props: { theme: ITheme }) => props.theme.color.accent1Alfa};
   }
-  @media ${device.mobileM} {
+  @media ${device.mobileL} {
     font-size: 18px;
   }
 

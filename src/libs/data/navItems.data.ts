@@ -8,13 +8,13 @@ export const navItems: INavItem[] = [
   },
   {
     id: 2,
-    label: 'about us',
-    href: '/about',
+    label: 'menu',
+    href: '/menu',
   },
   {
     id: 3,
-    label: 'menu',
-    href: '/menu',
+    label: 'about us',
+    href: '/about',
   },
   {
     id: 4,
@@ -23,11 +23,16 @@ export const navItems: INavItem[] = [
   },
   {
     id: 5,
+    label: 'gallery',
+    href: '/gallery',
+  },
+  {
+    id: 6,
     label: 'book table',
     href: '/book-table',
   },
   {
-    id: 6,
+    id: 7,
     label: 'events',
     href: '/events',
   },

@@ -1,12 +1,6 @@
 import { FC } from 'react';
-import Image from 'next/image';
-// import {
-//   FaFacebook,
-//   FaInstagram,
-//   FaTwitter,
-//   FaPinterest,
-// } from 'react-icons/fa';
 import ContactInfo from '@/components/ContactInfo';
+import FeastMemo from '@/components/FeastMemo';
 import {
   FooterContainer,
   FooterInner,
@@ -21,8 +15,6 @@ import {
   FooterBarLink,
   FooterRepoText,
   FooterRepoLink,
-  FooterDescImgContainer,
-  FooterDescText,
 } from './Footer.style';
 
 export const Footer: FC = () => {
@@ -35,68 +27,10 @@ export const Footer: FC = () => {
       <FooterInner>
         <FooterRow>
           <FooterCol>
-            <FooterDescImgContainer>
-              <Image
-                src='/assets/logo/logo-full-2c.png'
-                alt='Feast Logo'
-                fill
-                sizes='20vw'
-              />
-            </FooterDescImgContainer>
-            <FooterDescText>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit.
-              Molestias, necessitatibus in dolorem nisi aut alias ipsum error
-              omnis libero, possimus commodi ab, enim repellat aspernatur
-              consequatur?
-            </FooterDescText>
+            <FeastMemo isFooter />
           </FooterCol>
           <FooterCol>
             <ContactInfo isFooter />
-            {/* <FooterContactContainer>
-              <FooterContactTitle>Feast</FooterContactTitle>
-              <FooterContactText>
-                Call us:{' '}
-                <FooterContactLink href='tel:123-456-789'>
-                  123-456-789
-                </FooterContactLink>
-              </FooterContactText>
-              <FooterContactText>
-                Mail us:{' '}
-                <FooterContactLink href='mailto:feast@email.com'>
-                  feast@email.com
-                </FooterContactLink>
-              </FooterContactText>
-              <FooterContactTitle>Visit us</FooterContactTitle>
-              <FooterContactText>
-                9915 Monroe Rd, Houston, TX 77075{' '}
-                <FooterContactLink
-                  target='_blank'
-                  rel='norefferer'
-                  href='https://www.google.com/maps/place/9915+Monroe+Rd,+Houston,+TX+77075/@29.62213,-95.265791,13z/data=!4m6!3m5!1s0x8640971c34a28347:0x29c7541558f6fc8f!8m2!3d29.6221295!4d-95.265791!16s%2Fg%2F11c4lzlpjg?hl=pl-PL&gl=US'
-                >
-                  map link
-                </FooterContactLink>
-              </FooterContactText>
-              <FooterContactTitle>Follow us</FooterContactTitle>
-              <FooterContactIconContainer>
-                <FooterContactIconLink href='#'>
-                  <FaFacebook />
-                  facebook
-                </FooterContactIconLink>
-                <FooterContactIconLink href='#'>
-                  <FaTwitter />
-                  twitter
-                </FooterContactIconLink>
-                <FooterContactIconLink href='#'>
-                  <FaInstagram />
-                  instagram
-                </FooterContactIconLink>
-                <FooterContactIconLink href='#'>
-                  <FaPinterest />
-                  pinterest
-                </FooterContactIconLink>
-              </FooterContactIconContainer>
-            </FooterContactContainer> */}
           </FooterCol>
         </FooterRow>
         <FooterBar>

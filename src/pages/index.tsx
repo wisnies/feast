@@ -2,8 +2,14 @@ import { FC } from 'react';
 import Head from 'next/head';
 import MainHero from '@/components/hero/MainHero';
 import Title from '@/components/layout/Title';
+import MiniAbout from '@/components/mini/MiniAbout';
+import MiniGallery from '@/components/mini/MiniGallery';
 import ServiceHours from '@/components/ServiceHours';
-import { ButtonContainer, LinkButton } from '@/styles/buttons';
+import {
+  ButtonContainer,
+  LinkButton,
+  SingleButtonContainer,
+} from '@/styles/buttons';
 import { PageContainer, PageSection } from '@/styles/page';
 
 const HomePage: FC = () => {
@@ -25,6 +31,26 @@ const HomePage: FC = () => {
               book table
             </LinkButton>
           </ButtonContainer>
+        </PageSection>
+        <Title>About Feast</Title>
+        <PageSection>
+          <MiniAbout />
+          <ButtonContainer>
+            <LinkButton href='/about' color='accent3' position='center'>
+              about us
+            </LinkButton>
+            <LinkButton href='/contact' color='accent1' position='center'>
+              contact us
+            </LinkButton>
+          </ButtonContainer>
+        </PageSection>
+        <PageSection>
+          <MiniGallery />
+          <SingleButtonContainer>
+            <LinkButton href='/gallery' color='primary' position='center'>
+              gallery
+            </LinkButton>
+          </SingleButtonContainer>
         </PageSection>
       </PageContainer>
     </>
