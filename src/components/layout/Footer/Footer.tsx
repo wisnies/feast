@@ -1,11 +1,12 @@
 import { FC } from 'react';
 import Image from 'next/image';
-import {
-  FaFacebook,
-  FaInstagram,
-  FaTwitter,
-  FaPinterest,
-} from 'react-icons/fa';
+// import {
+//   FaFacebook,
+//   FaInstagram,
+//   FaTwitter,
+//   FaPinterest,
+// } from 'react-icons/fa';
+import ContactInfo from '@/components/ContactInfo';
 import {
   FooterContainer,
   FooterInner,
@@ -22,12 +23,6 @@ import {
   FooterRepoLink,
   FooterDescImgContainer,
   FooterDescText,
-  FooterContactTitle,
-  FooterContactText,
-  FooterContactLink,
-  FooterContactContainer,
-  FooterContactIconContainer,
-  FooterContactIconLink,
 } from './Footer.style';
 
 export const Footer: FC = () => {
@@ -56,7 +51,8 @@ export const Footer: FC = () => {
             </FooterDescText>
           </FooterCol>
           <FooterCol>
-            <FooterContactContainer>
+            <ContactInfo isFooter />
+            {/* <FooterContactContainer>
               <FooterContactTitle>Feast</FooterContactTitle>
               <FooterContactText>
                 Call us:{' '}
@@ -100,7 +96,7 @@ export const Footer: FC = () => {
                   pinterest
                 </FooterContactIconLink>
               </FooterContactIconContainer>
-            </FooterContactContainer>
+            </FooterContactContainer> */}
           </FooterCol>
         </FooterRow>
         <FooterBar>

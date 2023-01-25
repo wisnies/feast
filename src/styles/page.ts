@@ -4,7 +4,7 @@ import { StyledText } from './typography';
 
 export const PageContainer = styled.div`
   width: 100%;
-  max-width: ${size.laptopL};
+  max-width: ${size.laptop};
   margin: 0 auto;
   padding: 80px 5px;
   @media ${device.tablet} {

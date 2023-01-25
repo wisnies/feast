@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { ITheme } from '@/libs/interfaces/Theme.interface';
 import { size, device } from '@/styles/devices';
-import { StyledText, StyledLink, StyledTitle } from '@/styles/typography';
+import { StyledText, StyledLink } from '@/styles/typography';
 
 export const FooterContainer = styled.footer`
   background-color: ${(props: { theme: ITheme }) => props.theme.color.accent3};
@@ -148,64 +148,5 @@ export const FooterDescText = styled(StyledText)`
   }
   @media ${device.laptopL} {
     font-size: 16px;
-  }
-`;
-export const FooterContactTitle = styled(StyledTitle)`
-  font-size: 18px;
-  color: ${(props: { theme: ITheme }) => props.theme.color.secondary};
-  margin-bottom: 5px;
-`;
-export const FooterContactText = styled(StyledText)`
-  font-size: 12px;
-  color: ${(props: { theme: ITheme }) => props.theme.color.secondary};
-  margin-bottom: 5px;
-`;
-export const FooterContactLink = styled.a`
-  font-size: 1.2em;
-  font-weight: 700;
-  color: ${(props: { theme: ITheme }) => props.theme.color.accent1};
-  margin-bottom: 5px;
-  &:hover {
-    color: ${(props: { theme: ITheme }) => `${props.theme.color.accent1}aa`};
-  }
-`;
-export const FooterContactContainer = styled.div`
-  height: 100%;
-  width: 100%;
-`;
-export const FooterContactIconContainer = styled.div`
-  width: 100%;
-  display: flex;
-  justify-content: space-between;
-`;
-export const FooterContactIconLink = styled.a`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 5px;
-  color: ${(props: { theme: ITheme }) => props.theme.color.accent1};
-  font-size: 12px;
-  font-family: ${(props: { theme: ITheme }) => props.theme.fontPrimary};
-
-  & svg {
-    margin-bottom: 5px;
-    font-size: 20px;
-  }
-
-  &:hover {
-    color: ${(props: { theme: ITheme }) => `${props.theme.color.accent1}aa`};
-  }
-
-  @media ${device.mobileL} {
-    font-size: 14px;
-    & svg {
-      font-size: 24px;
-    }
-  }
-  @media ${device.laptop} {
-    font-size: 16px;
-    & svg {
-      font-size: 28px;
-    }
   }
 `;
