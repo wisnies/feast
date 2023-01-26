@@ -18,5 +18,6 @@ export interface ITheme {
     textSecondary: string;
     black: string;
     white: string;
+    gray: string;
   };
 }

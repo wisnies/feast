@@ -3,6 +3,7 @@ import Head from 'next/head';
 import MainHero from '@/components/hero/MainHero';
 import Title from '@/components/layout/Title';
 import MiniAbout from '@/components/mini/MiniAbout';
+import MiniEvent from '@/components/mini/MiniEvent';
 import MiniGallery from '@/components/mini/MiniGallery';
 import ServiceHours from '@/components/ServiceHours';
 import {
@@ -44,6 +45,7 @@ const HomePage: FC = () => {
             </LinkButton>
           </ButtonContainer>
         </PageSection>
+        <MiniEvent />
         <PageSection>
           <MiniGallery />
           <SingleButtonContainer>

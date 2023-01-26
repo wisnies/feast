@@ -1,5 +1,8 @@
 import { FC } from 'react';
 import Head from 'next/head';
+import Title from '@/components/layout/Title';
+import MiniEvent from '@/components/mini/MiniEvent';
+import { PageContainer, PageSection } from '@/styles/page';
 
 const EventsPage: FC = () => {
   return (
@@ -7,7 +10,13 @@ const EventsPage: FC = () => {
       <Head>
         <title>Events</title>
       </Head>
-      <p>EventsPage</p>
+      <PageContainer>
+        <PageSection>
+          <MiniEvent />
+        </PageSection>
+        <Title>Feast Events</Title>
+        <PageSection>events</PageSection>
+      </PageContainer>
     </>
   );
 };

@@ -2,7 +2,7 @@ import { FC } from 'react';
 import { GetServerSideProps } from 'next';
 import Image from 'next/image';
 import { dehydrate, useQuery, UseQueryResult } from 'react-query';
-import { IEvent } from '@/libs/interfaces/Event.interface';
+import { IEventMeta } from '@/libs/interfaces/Event.interface';
 import queryClient from '@/libs/queryClient';
 import { ButtonContainer, LinkButton } from '@/styles/buttons';
 import { Ellipsis } from '@/styles/typography';
@@ -27,7 +27,7 @@ import {
   MHEventBoxLink,
 } from './MainHero.style';
 
-const fetchEvents = async (): Promise<{ events: IEvent[] }> => {
+const fetchEvents = async (): Promise<{ events: IEventMeta[] }> => {
   const res = await fetch('http://localhost:3000/api/events/hero');
   if (res.ok) {
     return res.json();
@@ -41,8 +41,8 @@ export const MainHero: FC = () => {
     isLoading,
     isError,
     error,
-  }: UseQueryResult<{ events: IEvent[] }, Error> = useQuery<
-    { events: IEvent[] },
+  }: UseQueryResult<{ events: IEventMeta[] }, Error> = useQuery<
+    { events: IEventMeta[] },
     Error
   >(['events/main-hero'], fetchEvents);
 

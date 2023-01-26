@@ -31,7 +31,58 @@ export const SingleButtonContainer = styled.div`
   }
 `;
 
-type LinkButtonProps = {
+type LinkButtonSKProps = {
+  position?: 'center' | 'left' | 'right';
+};
+
+export const LinkButtonSK = styled.div<LinkButtonSKProps>`
+  background-color: ${(props: { theme: ITheme }) => props.theme.color.gray};
+  color: ${(props: { theme: ITheme }) => props.theme.color.gray};
+  width: 80%;
+  padding: 4px;
+  font-family: ${(props: { theme: ITheme }) => props.theme.fontPrimary};
+  font-weight: 700;
+  font-size: 12px;
+  text-transform: capitalize;
+  text-align: center;
+  display: block;
+  ${(props) => {
+    switch (props.position) {
+      case 'center':
+        return `
+          margin-left: auto;
+          margin-right: auto;
+        `;
+      case 'right':
+        return `
+          margin-left: auto;
+          margin-right: 0;
+        `;
+      case 'left':
+      default:
+        return `
+          margin-left: 0;
+          margin-right: auto;
+        `;
+    }
+  }}
+
+  @media ${device.mobileS} {
+    font-size: 14px;
+    padding: 6px;
+  }
+  @media ${device.mobileL} {
+    width: 100%;
+    font-size: 16px;
+    padding: 8px;
+  }
+
+  @media ${device.laptop} {
+    transition: all 0.3s ease;
+  }
+`;
+
+type LinkButtonProps = LinkButtonSKProps & {
   color:
     | 'primary'
     | 'secondary'
@@ -41,8 +92,8 @@ type LinkButtonProps = {
     | 'error'
     | 'success';
   variant?: 'outline';
-  position?: 'center' | 'left' | 'right';
 };
+
 export const LinkButton = styled(Link)<LinkButtonProps>`
   width: 80%;
   padding: 4px;

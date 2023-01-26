@@ -20,5 +20,6 @@ export const theme: ITheme = {
     textSecondary: '#020202',
     black: '',
     white: '',
+    gray: '#ced0ce',
   },
 };
