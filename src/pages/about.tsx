@@ -1,5 +1,6 @@
 import { FC } from 'react';
 import Head from 'next/head';
+import OffHero from '@/components/hero/OffHero';
 import Title from '@/components/layout/Title';
 import ServiceHours from '@/components/ServiceHours';
 import { ButtonContainer, LinkButton } from '@/styles/buttons';
@@ -9,8 +10,9 @@ const AboutPage: FC = () => {
   return (
     <>
       <Head>
-        <title>About</title>
+        <title>About Us | Feast BBQ</title>
       </Head>
+      <OffHero text='About Us | Feast BBQ' />
       <PageContainer>
         <Title>service hours</Title>
         <PageSection>

@@ -5,14 +5,16 @@ import { dehydrate, useQuery, UseQueryResult } from 'react-query';
 import { IEventMeta } from '@/libs/interfaces/Event.interface';
 import queryClient from '@/libs/queryClient';
 import { ButtonContainer, LinkButton } from '@/styles/buttons';
+import {
+  HeroOverlay,
+  HeroToBodyShapeContainer,
+  HeroToBodyShapeL,
+  HeroToBodyShapeR,
+} from '@/styles/layout';
 import { Ellipsis } from '@/styles/typography';
 import { displayDate } from '@/utils/displayDate';
 import {
   MHContainer,
-  MHOverlay,
-  MHShapeContainer,
-  MHShapeL,
-  MHShapeR,
   MHContainerInner,
   MHEventBox,
   MHEvent,
@@ -60,11 +62,11 @@ export const MainHero: FC = () => {
         style={{ objectFit: 'cover' }}
         priority={false}
       />
-      <MHOverlay />
-      <MHShapeContainer>
-        <MHShapeL />
-        <MHShapeR />
-      </MHShapeContainer>
+      <HeroOverlay />
+      <HeroToBodyShapeContainer>
+        <HeroToBodyShapeL />
+        <HeroToBodyShapeR />
+      </HeroToBodyShapeContainer>
       <MHContainerInner>
         <MHSectionL>
           <MHMapLink>Where to find us</MHMapLink>

@@ -1,7 +1,7 @@
 import { FC } from 'react';
 import Head from 'next/head';
 import Gallery from '@/components/Gallery';
-import Title from '@/components/layout/Title';
+import OffHero from '@/components/hero/OffHero';
 import { LinkButton, SingleButtonContainer } from '@/styles/buttons';
 import { PageContainer, PageSection } from '@/styles/page';
 
@@ -9,11 +9,10 @@ const GalleryPage: FC = () => {
   return (
     <>
       <Head>
-        <title>Gallery</title>
+        <title>Gallery | Feast BBQ</title>
       </Head>
-
+      <OffHero text='Gallery | Feast BBQ' />
       <PageContainer>
-        <Title>Feast gallery</Title>
         <PageSection>
           <Gallery />
           <SingleButtonContainer>

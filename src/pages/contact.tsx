@@ -1,6 +1,7 @@
 import { FC } from 'react';
 import Head from 'next/head';
 import ContactInfo from '@/components/ContactInfo';
+import OffHero from '@/components/hero/OffHero';
 import Title from '@/components/layout/Title';
 import MapIframe from '@/components/MapIframe';
 import { LinkButton, SingleButtonContainer } from '@/styles/buttons';
@@ -13,6 +14,7 @@ const ContactPage: FC = () => {
       <Head>
         <title>Contact Us | Feast BBQ</title>
       </Head>
+      <OffHero text='Contact Us | Feast BBQ' />
       <PageContainer>
         <Title>Contact information</Title>
         <PageSection>

@@ -1,12 +1,14 @@
 import { FC } from 'react';
 import Head from 'next/head';
+import OffHero from '@/components/hero/OffHero';
 
 const BookTablePage: FC = () => {
   return (
     <>
       <Head>
-        <title>Book Table</title>
+        <title>Book Table | Feast BBQ</title>
       </Head>
+      <OffHero text='Book Table | Feast BBQ' />
       <p>BookTablePage</p>
     </>
   );
