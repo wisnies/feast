@@ -32,3 +32,8 @@ export interface IEventFeatured extends IEventMeta {
   thumbnail: string;
   description: string;
 }
+
+export interface IEventListItem extends IEventMeta {
+  thumbnail: string;
+  description: string;
+}

@@ -31,11 +31,57 @@ export const SingleButtonContainer = styled.div`
   }
 `;
 
-type LinkButtonSKProps = {
+type ButtonSKProps = {
   position?: 'center' | 'left' | 'right';
 };
 
-export const LinkButtonSK = styled.div<LinkButtonSKProps>`
+export const LinkButtonSK = styled.div<ButtonSKProps>`
+  background-color: ${(props: { theme: ITheme }) => props.theme.color.gray};
+  color: ${(props: { theme: ITheme }) => props.theme.color.gray};
+  width: 80%;
+  padding: 4px;
+  font-family: ${(props: { theme: ITheme }) => props.theme.fontPrimary};
+  font-weight: 700;
+  font-size: 12px;
+  text-transform: capitalize;
+  text-align: center;
+  display: block;
+  ${(props) => {
+    switch (props.position) {
+      case 'center':
+        return `
+          margin-left: auto;
+          margin-right: auto;
+        `;
+      case 'right':
+        return `
+          margin-left: auto;
+          margin-right: 0;
+        `;
+      case 'left':
+      default:
+        return `
+          margin-left: 0;
+          margin-right: auto;
+        `;
+    }
+  }}
+
+  @media ${device.mobileS} {
+    font-size: 14px;
+    padding: 6px;
+  }
+  @media ${device.mobileL} {
+    width: 100%;
+    font-size: 16px;
+    padding: 8px;
+  }
+
+  @media ${device.laptop} {
+    transition: all 0.3s ease;
+  }
+`;
+export const ButtonSK = styled.div<ButtonSKProps>`
   background-color: ${(props: { theme: ITheme }) => props.theme.color.gray};
   color: ${(props: { theme: ITheme }) => props.theme.color.gray};
   width: 80%;
@@ -82,7 +128,7 @@ export const LinkButtonSK = styled.div<LinkButtonSKProps>`
   }
 `;
 
-type LinkButtonProps = LinkButtonSKProps & {
+type ButtonProps = ButtonSKProps & {
   color:
     | 'primary'
     | 'secondary'
@@ -94,7 +140,101 @@ type LinkButtonProps = LinkButtonSKProps & {
   variant?: 'outline';
 };
 
-export const LinkButton = styled(Link)<LinkButtonProps>`
+export const LinkButton = styled(Link)<ButtonProps>`
+  width: 80%;
+  padding: 4px;
+  font-family: ${(props: { theme: ITheme }) => props.theme.fontPrimary};
+  font-weight: 700;
+  font-size: 12px;
+  text-transform: capitalize;
+  text-align: center;
+  display: block;
+  ${(props) => {
+    switch (props.position) {
+      case 'center':
+        return `
+          margin-left: auto;
+          margin-right: auto;
+        `;
+      case 'right':
+        return `
+          margin-left: auto;
+          margin-right: 0;
+        `;
+      case 'left':
+      default:
+        return `
+          margin-left: 0;
+          margin-right: auto;
+        `;
+    }
+  }}
+
+  ${(props) => {
+    switch (props.color) {
+      case 'accent1':
+        return `
+            background-color: ${props.theme.color.accent1};
+            color: ${props.theme.color.textPrimary};
+            &:hover {
+                background-color: ${props.theme.color.accent1Alfa};
+            }
+          `;
+      case 'accent2':
+        return `
+            background-color: ${props.theme.color.accent2};
+            color: ${props.theme.color.textPrimary};
+            &:hover {
+                background-color: ${props.theme.color.accent2Alfa};
+            }
+          `;
+      case 'accent3':
+        return `
+            background-color: ${props.theme.color.accent3};
+            color: ${props.theme.color.textPrimary};
+            &:hover {
+                background-color: ${props.theme.color.accent3Alfa};
+            }
+          `;
+      case 'secondary':
+        return `
+            background-color: ${props.theme.color.secondary};
+            color: ${props.theme.color.textSecondary};
+            &:hover {
+                background-color: ${props.theme.color.secondaryAlfa};
+            }
+          `;
+      case 'primary':
+      default:
+        return `
+            background-color: ${props.theme.color.primary};
+            color: ${props.theme.color.textPrimary};
+            &:hover {
+                background-color: ${props.theme.color.primaryAlfa};
+            }
+          `;
+    }
+  }}
+
+  @media ${device.mobileS} {
+    font-size: 14px;
+    padding: 6px;
+  }
+  @media ${device.mobileL} {
+    width: 100%;
+    font-size: 16px;
+    padding: 8px;
+  }
+
+  @media ${device.laptop} {
+    transition: all 0.3s ease;
+  }
+`;
+export const Button = styled.button<ButtonProps>`
+  border: none;
+  outline: none;
+  background: none;
+  cursor: pointer;
   width: 80%;
   padding: 4px;
   font-family: ${(props: { theme: ITheme }) => props.theme.fontPrimary};
