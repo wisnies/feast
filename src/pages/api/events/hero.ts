@@ -1,9 +1,9 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
-import { IEventFeatured } from '@/libs/interfaces/Event.interface';
+import { IEventMeta } from '@/libs/interfaces/Event.interface';
 import prisma from '@/libs/prisma';
 
 type Data = {
-  events: IEventFeatured[];
+  events: IEventMeta[];
 };
 
 const handler = async (
@@ -22,14 +22,13 @@ const handler = async (
         title: true,
         slug: true,
         date: true,
-        thumbnail: true,
-        description: true,
       },
       orderBy: [
         {
           date: 'asc',
         },
       ],
+      take: 6,
     });
 
     res.status(200).json({

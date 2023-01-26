@@ -11,11 +11,16 @@ datasource db {
 }
 
 model Event {
-  id        String   @id @default(uuid())
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-  title     String
-  slug      String   @unique
-  thumbnail String
-  date      DateTime
+  id          String   @id @default(uuid())
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  title       String
+  slug        String   @unique
+  thumbnail   String
+  date        DateTime
+  description String
+  header      String
+  body        String
+  pricing     String
+  timeline    String
 }

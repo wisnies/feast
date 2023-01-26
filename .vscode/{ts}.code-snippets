@@ -13,7 +13,7 @@
       "$1",
       "};",
       "",
-      "const handler = (req: NextApiRequest, res: NextApiResponse<Data>) => {",
+      "const handler = async (req: NextApiRequest, res: NextApiResponse<Data>) => {",
       "$2",
       "};",
       "",

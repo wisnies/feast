@@ -3,7 +3,7 @@ import { IEventFeatured } from '@/libs/interfaces/Event.interface';
 import prisma from '@/libs/prisma';
 
 type Data = {
-  events: IEventFeatured[];
+  event: IEventFeatured | null;
 };
 
 const handler = async (
@@ -11,7 +11,7 @@ const handler = async (
   res: NextApiResponse<Data | { message: string }>
 ) => {
   try {
-    const events = await prisma.event.findMany({
+    const event = await prisma.event.findFirst({
       where: {
         date: {
           gt: new Date(),
@@ -25,15 +25,11 @@ const handler = async (
         thumbnail: true,
         description: true,
       },
-      orderBy: [
-        {
-          date: 'asc',
-        },
-      ],
+      take: 1,
     });
 
     res.status(200).json({
-      events,
+      event,
     });
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
   } catch (err: any) {

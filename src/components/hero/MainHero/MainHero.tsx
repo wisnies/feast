@@ -28,7 +28,7 @@ import {
 } from './MainHero.style';
 
 const fetchEvents = async (): Promise<{ events: IEvent[] }> => {
-  const res = await fetch('http://localhost:3000/api/events?select=meta');
+  const res = await fetch('http://localhost:3000/api/events/hero');
   if (res.ok) {
     return res.json();
   }

@@ -10,7 +10,17 @@ async function main() {
 
   events.forEach(async (event) => {
     await prisma.event.create({
-      data: event,
+      data: {
+        title: event.title,
+        slug: event.slug,
+        thumbnail: event.thumbnail,
+        date: event.date,
+        description: event.description,
+        header: event.header,
+        body: JSON.stringify(event.body),
+        pricing: JSON.stringify(event.pricing),
+        timeline: JSON.stringify(event.timeline),
+      },
     });
   });
 }

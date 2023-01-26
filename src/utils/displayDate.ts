@@ -1,4 +1,4 @@
-export const displayDate = (date: string) => {
+export const displayDate = (date: string | Date) => {
   const newDate = new Date(date);
 
   return `${newDate.toLocaleTimeString('en-Us', {
