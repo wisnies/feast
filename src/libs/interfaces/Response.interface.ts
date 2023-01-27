@@ -1,6 +1,6 @@
-import { IEventListItem, IEventMeta } from './Event.interface';
+import { IEvent, IEventListItem, IEventMeta } from './Event.interface';
 
-export interface IEventMainHeroRes {
+export interface IHeroEventsRes {
   events: IEventMeta[];
 }
 
@@ -10,4 +10,8 @@ export interface IEventListRes {
 
 export interface IUpcomingEventRes {
   event: IEventListItem | null;
+}
+
+export interface IEventRes {
+  event: IEvent | null;
 }

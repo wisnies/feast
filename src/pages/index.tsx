@@ -1,11 +1,18 @@
-import { FC } from 'react';
+import { GetServerSideProps, NextPage } from 'next';
 import Head from 'next/head';
+import { dehydrate, useQuery, UseQueryResult } from 'react-query';
+import UpcomingEvent from '@/components/event/UpcomingEvent';
 import MainHero from '@/components/hero/MainHero';
 import Title from '@/components/layout/Title';
 import MiniAbout from '@/components/mini/MiniAbout';
-import MiniEvent from '@/components/mini/MiniEvent';
 import MiniGallery from '@/components/mini/MiniGallery';
 import ServiceHours from '@/components/ServiceHours';
+import {
+  IHeroEventsRes,
+  IUpcomingEventRes,
+} from '@/libs/interfaces/Response.interface';
+import { fetchHeroEvents, fetchUpcomingEvent } from '@/libs/query';
+import queryClient from '@/libs/queryClient';
 import {
   ButtonContainer,
   LinkButton,
@@ -13,13 +20,39 @@ import {
 } from '@/styles/buttons';
 import { PageContainer, PageSection } from '@/styles/page';
 
-const HomePage: FC = () => {
+const HomePage: NextPage = () => {
+  const {
+    isLoading: isLoadingHero,
+    // isError: isErrorHero,
+    data: dataHero,
+  }: // error: errorHero,
+  UseQueryResult<IHeroEventsRes, Error> = useQuery<IHeroEventsRes, Error>(
+    ['events/fetchHero'],
+    () => fetchHeroEvents()
+  );
+
+  const {
+    isLoading: isLoadingUpcoming,
+    // isError: isErrorUpcoming,
+    data: dataUpcoming,
+  }: // error: errorUpcoming,
+  UseQueryResult<IUpcomingEventRes, Error> = useQuery<IUpcomingEventRes, Error>(
+    ['events/fetchUpcoming'],
+    () => fetchUpcomingEvent(),
+    {
+      enabled: Number(dataHero?.events.length) > 0,
+    }
+  );
+
   return (
     <>
       <Head>
-        <title>Home Page</title>
+        <title>Home | Feast BBQ</title>
       </Head>
-      <MainHero />
+      <MainHero
+        isLoading={isLoadingHero}
+        events={dataHero?.events ? dataHero.events : []}
+      />
       <PageContainer>
         <Title>service hours</Title>
         <PageSection>
@@ -45,7 +78,10 @@ const HomePage: FC = () => {
             </LinkButton>
           </ButtonContainer>
         </PageSection>
-        <MiniEvent />
+        <UpcomingEvent
+          isLoading={isLoadingUpcoming}
+          event={dataUpcoming ? dataUpcoming.event : null}
+        />
         <PageSection>
           <MiniGallery />
           <SingleButtonContainer>
@@ -57,6 +93,20 @@ const HomePage: FC = () => {
       </PageContainer>
     </>
   );
+};
+
+export const getServerSideProps: GetServerSideProps = async () => {
+  await queryClient.prefetchQuery(['events/fetchHero'], () =>
+    fetchHeroEvents()
+  );
+  await queryClient.prefetchQuery(['events/fetchUpcoming'], () =>
+    fetchUpcomingEvent()
+  );
+  return {
+    props: {
+      dehydratedState: dehydrate(queryClient),
+    },
+  };
 };
 
 export default HomePage;

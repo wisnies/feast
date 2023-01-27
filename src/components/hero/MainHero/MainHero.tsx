@@ -1,9 +1,6 @@
 import { FC } from 'react';
-import { GetServerSideProps } from 'next';
 import Image from 'next/image';
-import { dehydrate, useQuery, UseQueryResult } from 'react-query';
 import { IEventMeta } from '@/libs/interfaces/Event.interface';
-import queryClient from '@/libs/queryClient';
 import { ButtonContainer, LinkButton } from '@/styles/buttons';
 import {
   HeroOverlay,
@@ -29,30 +26,15 @@ import {
   MHEventBoxLink,
 } from './MainHero.style';
 
-const fetchEvents = async (): Promise<{ events: IEventMeta[] }> => {
-  const res = await fetch('http://localhost:3000/api/events/hero');
-  if (res.ok) {
-    return res.json();
-  }
-  throw new Error('Response not OK');
+type MainHeroProps = {
+  isLoading: boolean;
+  events: IEventMeta[];
 };
 
-export const MainHero: FC = () => {
-  const {
-    data,
-    isLoading,
-    isError,
-    error,
-  }: UseQueryResult<{ events: IEventMeta[] }, Error> = useQuery<
-    { events: IEventMeta[] },
-    Error
-  >(['events/main-hero'], fetchEvents);
-
-  if (isError) {
-    // create error handling
-    return <p>{error.message}</p>;
-  }
-
+export const MainHero: FC<MainHeroProps> = ({
+  isLoading,
+  events,
+}: MainHeroProps) => {
   return (
     <MHContainer>
       <Image
@@ -82,20 +64,20 @@ export const MainHero: FC = () => {
         </MHSectionL>
         <MHSectionR>
           <MHOpaqeContainer isLoading={isLoading}>
-            {data && data.events.length > 0 && (
-              <MHEvent href={`/events/${data.events[0].slug}`}>
-                <MHEventTitle as='h5'>{data.events[0].title}</MHEventTitle>
-                <MHEventText>{displayDate(data.events[0].date)}</MHEventText>
+            {events.length > 0 && (
+              <MHEvent href={`/events/${events[0].slug}`}>
+                <MHEventTitle as='h5'>{events[0].title}</MHEventTitle>
+                <MHEventText>{displayDate(events[0].date)}</MHEventText>
               </MHEvent>
             )}
           </MHOpaqeContainer>
         </MHSectionR>
         <MHSectionL>
           <MHOpaqeContainer isLoading={isLoading}>
-            {data && data.events.length > 0 && (
+            {events.length > 0 && (
               <MHEventBox>
                 <MHEventBoxTitle as='h5'>Upcoming events</MHEventBoxTitle>
-                {data.events.slice(1).map((event) => (
+                {events.slice(1).map((event) => (
                   <MHEventBoxLink key={event.id} href={`/events/${event.slug}`}>
                     <Ellipsis>{event.title}</Ellipsis>
                     {displayDate(event.date)}
@@ -108,13 +90,4 @@ export const MainHero: FC = () => {
       </MHContainerInner>
     </MHContainer>
   );
-};
-
-export const getServerSideProps: GetServerSideProps = async () => {
-  await queryClient.prefetchQuery(['events/main-hero'], fetchEvents);
-  return {
-    props: {
-      dehydratedState: dehydrate(queryClient),
-    },
-  };
 };

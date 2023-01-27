@@ -23,7 +23,10 @@ const handler = async (
     });
 
     if (!event) {
-      throw new Error('No event');
+      res.status(404).json({
+        message: 'Not found',
+      });
+      throw new Error('Not found');
     }
 
     res.status(200).json({
@@ -44,9 +47,7 @@ const handler = async (
     });
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
   } catch (err: any) {
-    res.status(500).json({
-      message: err.message as string,
-    });
+    // throw new Error(err.message);
   }
 };
 
