@@ -34,10 +34,10 @@
   "Nextjs page component": {
     "prefix": "npc",
     "body": [
-      "import { FC } from 'react';",
+      "import { NextPage } from 'next';",
       "import Head from 'next/head';",
       "",
-      "const $1Page: FC = () => {",
+      "const $1Page: NextPage = () => {",
       "return (",
       "<>",
       "<Head>",
