@@ -68,8 +68,11 @@ const EventsPage: NextPage = () => {
 
         <PageSection>
           <ButtonContainer>
-            <Button onClick={() => setShowArchive(true)} color='accent3'>
-              Show archive
+            <Button
+              onClick={() => setShowArchive(!showArchive)}
+              color='accent3'
+            >
+              {showArchive ? 'Hide' : 'Show'} archive
             </Button>
             <LinkButton href='/' color='primary'>
               Homepage
