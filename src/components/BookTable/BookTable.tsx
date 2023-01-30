@@ -1,4 +1,4 @@
-import { FC } from 'react';
+import { FC, useState } from 'react';
 import Calendar from '@/components/Calendar';
 import BookTableForm from '@/components/forms/BookTableForm';
 import Title from '@/components/layout/Title';
@@ -7,8 +7,9 @@ import { PageSection } from '@/styles/page';
 import { BTContainer } from './BookTable.style';
 
 export const BookTable: FC = () => {
+  const [selectedDate, setSelectedDate] = useState<Date | null>(null);
   const handleDate = (date: Date) => {
-    console.log(date);
+    setSelectedDate(date);
   };
 
   return (
@@ -16,7 +17,7 @@ export const BookTable: FC = () => {
       <Title>Book table</Title>
       <BTContainer>
         <Calendar handleDate={handleDate} />
-        <BookTableForm />
+        <BookTableForm date={selectedDate} />
       </BTContainer>
       <SingleButtonContainer>
         <LinkButton href='/' position='right' color='primary'>
