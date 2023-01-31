@@ -1,6 +1,7 @@
 import { FC } from 'react';
 import ContactInfo from '@/components/_elements/ContactInfo';
 import FeastMemo from '@/components/_elements/FeastMemo';
+import { InlineExternalLink, InlineLink, Text } from '@/styles/typography';
 import {
   FooterContainer,
   FooterInner,
@@ -11,10 +12,6 @@ import {
   FooterRepo,
   FooterRow,
   FooterCol,
-  FooterBarText,
-  FooterBarLink,
-  FooterRepoText,
-  FooterRepoLink,
 } from './Footer.style';
 
 export const Footer: FC = () => {
@@ -34,25 +31,26 @@ export const Footer: FC = () => {
           </FooterCol>
         </FooterRow>
         <FooterBar>
-          <FooterBarText>
+          <Text align='center' color='secondary'>
             You can find us at{' '}
-            <FooterBarLink href='/contact'>
+            <InlineLink href='/contact' color='accent1'>
               9915 Monroe Rd, Houston
-            </FooterBarLink>
+            </InlineLink>
             , the best spot for an amazing BBQ
-          </FooterBarText>
+          </Text>
         </FooterBar>
         <FooterRepo>
-          <FooterRepoText>
+          <Text align='center' color='secondary'>
             Copyright Mateusz Wiśniewski &copy;2023 - {new Date().getFullYear()}
-          </FooterRepoText>
-          <FooterRepoLink
+          </Text>
+          <InlineExternalLink
             href='https://github.com/wisnies/feast'
             target='_blank'
             rel='norefferer'
+            color='accent1'
           >
             Github repo
-          </FooterRepoLink>
+          </InlineExternalLink>
         </FooterRepo>
       </FooterInner>
     </FooterContainer>

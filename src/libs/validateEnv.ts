@@ -5,8 +5,8 @@ export const validateEnv = (): void => {
     NODE_ENV: str({
       choices: ['development', 'production'],
     }),
-    NEXT_PULIC_API_URL: str({
-      default: 'http://localhost:3000/api',
+    NEXT_PULIC_APP_URL: str({
+      default: 'http://localhost:3000',
     }),
   });
 };

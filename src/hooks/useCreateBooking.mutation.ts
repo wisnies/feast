@@ -4,13 +4,16 @@ import { BookingData } from '@/libs/types/Booking.type';
 import { BookingRes } from '@/libs/types/Response.type';
 
 const createBooking = async (bookingData: BookingData): Promise<BookingRes> => {
-  const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/booking/create`, {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify(bookingData),
-  });
+  const res = await fetch(
+    `${process.env.NEXT_PUBLIC_APP_URL}/api/booking/create`,
+    {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(bookingData),
+    }
+  );
   const parsedRes = await res.json();
 
   if (parsedRes.success) {

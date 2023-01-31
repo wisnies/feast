@@ -17,6 +17,7 @@ export const HomeAbout: FC = () => {
             alt='Feast staff'
             fill
             priority={false}
+            sizes='420px'
           />
         </MAImageContainer>
       </MAContainer>

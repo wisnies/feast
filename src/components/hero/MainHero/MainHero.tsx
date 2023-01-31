@@ -1,6 +1,6 @@
 import { FC } from 'react';
 import Image from 'next/image';
-import { IEventMeta } from '@/libs/interfaces/Event.interface';
+import { IEventListItem } from '@/libs/interfaces/Event.interface';
 import { ButtonContainer, LinkButton } from '@/styles/buttons';
 import {
   HeroOverlay,
@@ -28,7 +28,7 @@ import {
 
 type MainHeroProps = {
   isLoading: boolean;
-  events: IEventMeta[];
+  events: IEventListItem[];
 };
 
 export const MainHero: FC<MainHeroProps> = ({
@@ -41,6 +41,7 @@ export const MainHero: FC<MainHeroProps> = ({
         src='/assets/hero/main-hero.jpg'
         alt='charcoal grill'
         fill
+        sizes='100vw'
         style={{ objectFit: 'cover' }}
         priority={false}
       />
@@ -78,9 +79,13 @@ export const MainHero: FC<MainHeroProps> = ({
               <MHEventBox>
                 <MHEventBoxTitle as='h5'>Upcoming events</MHEventBoxTitle>
                 {events.slice(1).map((event) => (
-                  <MHEventBoxLink key={event.id} href={`/events/${event.slug}`}>
+                  <MHEventBoxLink
+                    key={event.id}
+                    href={`/events/${event.slug}`}
+                    color='accent1'
+                  >
                     <Ellipsis>{event.title}</Ellipsis>
-                    {displayDate(event.date)}
+                    <span>{displayDate(event.date, false)}</span>
                   </MHEventBoxLink>
                 ))}
               </MHEventBox>

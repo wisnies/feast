@@ -1,10 +1,6 @@
 import { FC } from 'react';
-import {
-  FMContainer,
-  FMImage,
-  FMImageContainer,
-  FMText,
-} from './FeastMemo.style';
+import { Text } from '@/styles/typography';
+import { FMContainer, FMImage, FMImageContainer } from './FeastMemo.style';
 
 type FeastMemoProps = {
   isFooter: boolean;
@@ -19,9 +15,10 @@ export const FeastMemo: FC<FeastMemoProps> = ({ isFooter }: FeastMemoProps) => {
           alt='feast logo'
           fill
           priority={false}
+          sizes='(max-width: 1024px) 150px, 200px'
         />
       </FMImageContainer>
-      <FMText isFooter={isFooter}>
+      <Text color={isFooter ? 'secondary' : 'textSecondary'} align='justify'>
         Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestias,
         necessitatibus in dolorem nisi aut alias ipsum error omnis libero,
         possimus commodi ab, enim repellat aspernatur consequatur? Magni
@@ -29,7 +26,7 @@ export const FeastMemo: FC<FeastMemoProps> = ({ isFooter }: FeastMemoProps) => {
         reiciendis cupiditate assumenda quo aperiam, ab ipsam, animi natus sit
         dignissimos voluptates quidem quae beatae. Est sapiente sint itaque
         aperiam!
-      </FMText>
+      </Text>
     </FMContainer>
   );
 };

@@ -5,7 +5,7 @@ export const fetchEvents = async (
   mode: 'upcoming' | 'archived'
 ): Promise<EventListItemRes> => {
   const res = await fetch(
-    `${process.env.NEXT_PUBLIC_API_URL}/event?mode=${mode}`
+    `${process.env.NEXT_PUBLIC_APP_URL}/api/event?mode=${mode}`
   );
   const parsedRes = await res.json();
   if (parsedRes.success) {

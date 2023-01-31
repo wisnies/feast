@@ -2,7 +2,9 @@ import { useQuery, UseQueryResult } from 'react-query';
 import { BookingRes } from '@/libs/types/Response.type';
 
 export const fetchBookingDetails = async (id: string): Promise<BookingRes> => {
-  const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/booking/${id}`);
+  const res = await fetch(
+    `${process.env.NEXT_PUBLIC_APP_URL}/api/booking/${id}`
+  );
   const parsedRes = await res.json();
   if (parsedRes.success) {
     return {

@@ -24,128 +24,27 @@ export const ButtonContainer = styled.div`
 export const SingleButtonContainer = styled.div`
   width: 100%;
   max-width: 200px;
-  margin-top: 10px;
-  @media ${device.mobileL} {
-    align-self: flex-end;
-    margin-top: 20px;
+  margin: 1em auto 0 auto;
+  a,
+  button {
+    width: 100%;
+  }
+  @media ${device.tablet} {
+    margin: 1em 0 0 auto;
   }
 `;
 
-type ButtonSKProps = {
+type ButtonProps = {
+  color: 'primary' | 'secondary' | 'accent1' | 'accent2' | 'accent3';
   position?: 'center' | 'left' | 'right';
-};
-
-export const LinkButtonSK = styled.div<ButtonSKProps>`
-  background-color: ${(props: { theme: ITheme }) => props.theme.color.gray};
-  color: ${(props: { theme: ITheme }) => props.theme.color.gray};
-  width: 80%;
-  padding: 4px;
-  font-family: ${(props: { theme: ITheme }) => props.theme.fontPrimary};
-  font-weight: 700;
-  font-size: 12px;
-  text-transform: capitalize;
-  text-align: center;
-  display: block;
-  ${(props) => {
-    switch (props.position) {
-      case 'center':
-        return `
-          margin-left: auto;
-          margin-right: auto;
-        `;
-      case 'right':
-        return `
-          margin-left: auto;
-          margin-right: 0;
-        `;
-      case 'left':
-      default:
-        return `
-          margin-left: 0;
-          margin-right: auto;
-        `;
-    }
-  }}
-
-  @media ${device.mobileS} {
-    font-size: 14px;
-    padding: 6px;
-  }
-  @media ${device.mobileL} {
-    width: 100%;
-    font-size: 16px;
-    padding: 8px;
-  }
-
-  @media ${device.laptop} {
-    transition: all 0.3s ease;
-  }
-`;
-export const ButtonSK = styled.div<ButtonSKProps>`
-  background-color: ${(props: { theme: ITheme }) => props.theme.color.gray};
-  color: ${(props: { theme: ITheme }) => props.theme.color.gray};
-  width: 80%;
-  padding: 4px;
-  font-family: ${(props: { theme: ITheme }) => props.theme.fontPrimary};
-  font-weight: 700;
-  font-size: 12px;
-  text-transform: capitalize;
-  text-align: center;
-  display: block;
-  ${(props) => {
-    switch (props.position) {
-      case 'center':
-        return `
-          margin-left: auto;
-          margin-right: auto;
-        `;
-      case 'right':
-        return `
-          margin-left: auto;
-          margin-right: 0;
-        `;
-      case 'left':
-      default:
-        return `
-          margin-left: 0;
-          margin-right: auto;
-        `;
-    }
-  }}
-
-  @media ${device.mobileS} {
-    font-size: 14px;
-    padding: 6px;
-  }
-  @media ${device.mobileL} {
-    width: 100%;
-    font-size: 16px;
-    padding: 8px;
-  }
-
-  @media ${device.laptop} {
-    transition: all 0.3s ease;
-  }
-`;
-
-type ButtonProps = ButtonSKProps & {
-  color:
-    | 'primary'
-    | 'secondary'
-    | 'accent1'
-    | 'accent2'
-    | 'accent3'
-    | 'error'
-    | 'success';
-  variant?: 'outline';
 };
 
 export const LinkButton = styled(Link)<ButtonProps>`
   width: 80%;
-  padding: 4px;
+  padding: 0.5em 1em;
   font-family: ${(props: { theme: ITheme }) => props.theme.fontPrimary};
-  font-weight: 700;
-  font-size: 12px;
+  font-weight: 400;
+  font-size: 0.9em;
   text-transform: capitalize;
   text-align: center;
   display: block;
@@ -217,13 +116,10 @@ export const LinkButton = styled(Link)<ButtonProps>`
   }}
 
   @media ${device.mobileS} {
-    font-size: 14px;
-    padding: 6px;
+    font-size: 1em;
   }
   @media ${device.mobileL} {
     width: 100%;
-    font-size: 16px;
-    padding: 8px;
   }
 
   @media ${device.laptop} {
@@ -236,10 +132,10 @@ export const Button = styled.button<ButtonProps>`
   background: none;
   cursor: pointer;
   width: 80%;
-  padding: 4px;
+  padding: 0.5em 1em;
   font-family: ${(props: { theme: ITheme }) => props.theme.fontPrimary};
-  font-weight: 700;
-  font-size: 12px;
+  font-weight: 400;
+  font-size: 0.9em;
   text-transform: capitalize;
   text-align: center;
   display: block;
@@ -310,14 +206,11 @@ export const Button = styled.button<ButtonProps>`
     }
   }}
 
-  @media ${device.mobileS} {
-    font-size: 14px;
-    padding: 6px;
+@media ${device.mobileS} {
+    font-size: 1em;
   }
   @media ${device.mobileL} {
     width: 100%;
-    font-size: 16px;
-    padding: 8px;
   }
 
   @media ${device.laptop} {

@@ -5,7 +5,8 @@ import {
   HeroToBodyShapeL,
   HeroToBodyShapeR,
 } from '@/styles/layout';
-import { OHContainer, OHImage, OHTitle } from './OffHero.style';
+import { Title } from '@/styles/typography';
+import { OHContainer, OHImage } from './OffHero.style';
 
 type OffHeroProps = {
   text: string;
@@ -19,9 +20,12 @@ export const OffHero: FC<OffHeroProps> = ({ text }: OffHeroProps) => {
         alt='Off hero background'
         fill
         priority={false}
+        sizes='100vw'
       />
       <HeroOverlay />
-      <OHTitle as='h1'>{text}</OHTitle>
+      <Title as='h1' color='secondary' size={1.8}>
+        {text}
+      </Title>
       <HeroToBodyShapeContainer>
         <HeroToBodyShapeL />
         <HeroToBodyShapeR />

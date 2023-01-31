@@ -1,14 +1,13 @@
 import styled from 'styled-components';
 import { ITheme } from '@/libs/interfaces/Theme.interface';
 import { size, device } from '@/styles/devices';
-import { StyledText, StyledLink } from '@/styles/typography';
 
 export const FooterContainer = styled.footer`
   background-color: ${(props: { theme: ITheme }) => props.theme.color.accent3};
 `;
 export const FooterInner = styled.div`
   width: 100%;
-  max-width: ${size.laptopL};
+  max-width: ${size.laptop};
   margin: 0 auto;
   display: flex;
   flex-direction: column;
@@ -46,63 +45,14 @@ export const FooterBar = styled.div`
   border-bottom: 4px solid
     ${(props: { theme: ITheme }) => props.theme.color.secondary};
 `;
-export const FooterBarText = styled(StyledText)`
-  font-size: 12px;
-  font-weight: 700;
-  color: ${(props: { theme: ITheme }) => props.theme.color.secondary};
-  text-align: center;
-  @media ${device.tablet} {
-    font-size: 14px;
-  }
-  @media ${device.laptopL} {
-    font-size: 16px;
-  }
-`;
-export const FooterBarLink = styled(StyledLink)`
-  font-size: 1.2em;
-  font-weight: 700;
-  color: ${(props: { theme: ITheme }) => props.theme.color.accent1};
-  &:hover {
-    color: ${(props: { theme: ITheme }) => `${props.theme.color.accent1}aa`};
-  }
-`;
+
 export const FooterRepo = styled.div`
   padding: 20px 5px;
   display: flex;
   flex-direction: column;
   align-items: center;
 `;
-export const FooterRepoText = styled(StyledText)`
-  font-size: 12px;
-  font-weight: 400;
-  letter-spacing: 2px;
-  color: ${(props: { theme: ITheme }) => props.theme.color.secondary};
-  text-align: center;
-  @media ${device.tablet} {
-    font-size: 14px;
-  }
-  @media ${device.laptopL} {
-    font-size: 16px;
-  }
-`;
-export const FooterRepoLink = styled.a`
-  margin-top: 20px;
-  font-size: 12px;
-  font-family: ${(props: { theme: ITheme }) => props.theme.fontPrimary};
-  font-weight: 400;
-  letter-spacing: 2px;
-  color: ${(props: { theme: ITheme }) => props.theme.color.accent1};
-  text-align: center;
-  &:hover {
-    color: ${(props: { theme: ITheme }) => `${props.theme.color.accent1}aa`};
-  }
-  @media ${device.tablet} {
-    font-size: 14px;
-  }
-  @media ${device.laptopL} {
-    font-size: 16px;
-  }
-`;
+
 export const FooterRow = styled.div`
   display: flex;
   flex-direction: column;
@@ -111,7 +61,7 @@ export const FooterRow = styled.div`
   @media ${device.tablet} {
     flex-direction: row;
     align-items: flex-end;
-    justify-content: center;
+    justify-content: space-between;
   }
 `;
 export const FooterCol = styled.div`
@@ -137,16 +87,5 @@ export const FooterDescImgContainer = styled.div`
   @media ${device.mobileL} {
     width: calc(1.6 * 162px);
     height: calc(1.6 * 200px);
-  }
-`;
-export const FooterDescText = styled(StyledText)`
-  font-size: 12px;
-  color: ${(props: { theme: ITheme }) => props.theme.color.secondary};
-  text-align: center;
-  @media ${device.tablet} {
-    font-size: 14px;
-  }
-  @media ${device.laptopL} {
-    font-size: 16px;
   }
 `;

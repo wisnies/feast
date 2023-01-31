@@ -5,14 +5,8 @@ import {
   FaTwitter,
   FaPinterest,
 } from 'react-icons/fa';
-import {
-  CIContainer,
-  CIExternalLink,
-  CIIcon,
-  CIIconContainer,
-  CIText,
-  CITitle,
-} from './ContactInfo.style';
+import { InlineExternalLink, Text, Title } from '@/styles/typography';
+import { CIContainer, CIIcon, CIIconContainer } from './ContactInfo.style';
 
 type ContactInfoProps = {
   isFooter: boolean;
@@ -23,19 +17,42 @@ export const ContactInfo: FC<ContactInfoProps> = ({
 }: ContactInfoProps) => {
   return (
     <CIContainer>
-      <CITitle isFooter={isFooter}>contact us</CITitle>
-      <CIText isFooter={isFooter}>
+      <Title color={isFooter ? 'secondary' : 'primary'} align='left' mb={1}>
+        contact us
+      </Title>
+      <Text
+        transform='capitalize'
+        color={isFooter ? 'secondary' : 'textSecondary'}
+        align='left'
+        mb={0.5}
+      >
         call us:
-        <CIExternalLink href='tel:123-456-789'>123-456-789</CIExternalLink>
-      </CIText>
-      <CIText isFooter={isFooter}>
+        <InlineExternalLink href='tel:123-456-789' color='accent1' bold>
+          {' '}
+          123-456-789
+        </InlineExternalLink>
+      </Text>
+      <Text
+        transform='capitalize'
+        color={isFooter ? 'secondary' : 'textSecondary'}
+        align='left'
+        mb={0.5}
+      >
         mail us:
-        <CIExternalLink href='mailto:feastbbq@email.com'>
+        <InlineExternalLink
+          href='mailto:feastbbq@email.com'
+          color='accent1'
+          bold
+          transform='lowercase'
+        >
+          {' '}
           feastbbq@email.com
-        </CIExternalLink>
-      </CIText>
+        </InlineExternalLink>
+      </Text>
 
-      <CITitle isFooter={isFooter}>follow us</CITitle>
+      <Title color={isFooter ? 'secondary' : 'primary'} align='left' mb={1}>
+        follow us
+      </Title>
       <CIIconContainer>
         <CIIcon>
           <FaFacebook />
@@ -54,19 +71,30 @@ export const ContactInfo: FC<ContactInfoProps> = ({
           pinterest
         </CIIcon>
       </CIIconContainer>
-      <CITitle isFooter={isFooter}>visit us</CITitle>
-      <CIText isFooter={isFooter}>
+      <Title color={isFooter ? 'secondary' : 'primary'} align='left' mb={1}>
+        visit us
+      </Title>
+      <Text
+        transform='capitalize'
+        color={isFooter ? 'secondary' : 'textSecondary'}
+        align='left'
+        mb={0.5}
+      >
         9915 Monroe Rd, Houston, TX 77075
         {isFooter && (
-          <CIExternalLink
+          <InlineExternalLink
             href='https://www.google.com/maps/place/9915+Monroe+Rd,+Houston,+TX+77075/@29.62213,-95.265791,13z/data=!4m6!3m5!1s0x8640971c34a28347:0x29c7541558f6fc8f!8m2!3d29.6221295!4d-95.265791!16s%2Fg%2F11c4lzlpjg?hl=pl-PL&gl=US'
             target='_blank'
             rel='norefferer'
+            color='accent1'
+            bold
+            transform='lowercase'
           >
+            {' '}
             map
-          </CIExternalLink>
+          </InlineExternalLink>
         )}
-      </CIText>
+      </Text>
     </CIContainer>
   );
 };

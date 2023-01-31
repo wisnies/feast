@@ -5,16 +5,14 @@ import { BookingData } from '@/libs/types/Booking.type';
 import { bookingSchema } from '@/libs/validation/schemas/booking.schema';
 import { validate } from '@/libs/validation/validate';
 import { Button, SingleButtonContainer } from '@/styles/buttons';
+import { InlineLink, Text } from '@/styles/typography';
 import {
-  BTFCheckbox,
-  BTFCheckboxLabel,
-  BTFContainer,
-  BTFGroup,
-  BTFInlineLInk,
-  BTFInput,
-  BTFInputContainer,
-  BTFInputError,
-  BTFSpan,
+  BFCheckbox,
+  BFContainer,
+  BFGroup,
+  BFInput,
+  BFInputContainer,
+  BFLabel,
 } from './BookingForm.style';
 
 type BookingFormProps = {
@@ -110,79 +108,109 @@ export const BookingForm: FC<BookingFormProps> = ({
   };
 
   return (
-    <BTFContainer onSubmit={handleSubmit}>
-      <BTFGroup>
-        <BTFInputContainer>
-          <BTFInput
+    <BFContainer onSubmit={handleSubmit}>
+      <BFGroup>
+        <BFInputContainer>
+          <BFInput
             type='text'
             id='name'
             placeholder='your name'
             {...bindName}
             isError={!!nameError}
           />
-        </BTFInputContainer>
-        {nameError && <BTFInputError>{nameError}</BTFInputError>}
-      </BTFGroup>
-      <BTFGroup>
-        <BTFInputContainer>
-          <BTFInput
+        </BFInputContainer>
+        {nameError && (
+          <Text align='left' color='accent2' size={0.8}>
+            {nameError}
+          </Text>
+        )}
+      </BFGroup>
+      <BFGroup>
+        <BFInputContainer>
+          <BFInput
             type='text'
             id='email'
             placeholder='e-mail address'
             {...bindEmail}
             isError={!!emailError}
           />
-        </BTFInputContainer>
-        {emailError && <BTFInputError>{emailError}</BTFInputError>}
-      </BTFGroup>
-      <BTFGroup>
-        <BTFInputContainer>
-          <BTFInput
+        </BFInputContainer>
+        {emailError && (
+          <Text align='left' color='accent2' size={0.8}>
+            {emailError}
+          </Text>
+        )}
+      </BFGroup>
+      <BFGroup>
+        <BFInputContainer>
+          <BFInput
             type='number'
             id='phone'
             placeholder='phone number (9-digit mobile)'
             {...bindPhone}
             isError={!!phoneError}
           />
-        </BTFInputContainer>
-        {phoneError && <BTFInputError>{phoneError}</BTFInputError>}
-      </BTFGroup>
-      <BTFGroup>
-        <BTFInputContainer>
-          <BTFInput
+        </BFInputContainer>
+        {phoneError && (
+          <Text align='left' color='accent2' size={0.8}>
+            {phoneError}
+          </Text>
+        )}
+      </BFGroup>
+      <BFGroup>
+        <BFInputContainer>
+          <BFInput
             type='number'
             id='guests'
             placeholder='guest count (0-8)'
             {...bindGuestCount}
             isError={!!guestCountError}
           />
-        </BTFInputContainer>
-        {guestCountError && <BTFInputError>{guestCountError}</BTFInputError>}
-      </BTFGroup>
-      <BTFGroup>
-        <BTFInputContainer>
-          <BTFCheckbox
+        </BFInputContainer>
+        {guestCountError && (
+          <Text align='left' color='accent2' size={0.8}>
+            {guestCountError}
+          </Text>
+        )}
+      </BFGroup>
+      <BFGroup>
+        <BFInputContainer>
+          <BFCheckbox
+            id='tos'
             type='checkbox'
             isError={!!tosError}
             checked={tos}
             onChange={() => setTos(!tos)}
           />
-          <BTFSpan>
-            <BTFCheckboxLabel>i accept</BTFCheckboxLabel>
-            <BTFInlineLInk href='#'>terms of service</BTFInlineLInk>
-          </BTFSpan>
-        </BTFInputContainer>
-        {tosError && <BTFInputError>{tosError}</BTFInputError>}
-      </BTFGroup>
-      <BTFGroup>
-        {dateError && <BTFInputError>{dateError}</BTFInputError>}
-      </BTFGroup>
+          <BFLabel htmlFor='tos'>
+            <Text align='left' transform='capitalize'>
+              i accept
+              <InlineLink color='accent3' href='#'>
+                {' '}
+                terms of service
+              </InlineLink>
+            </Text>
+          </BFLabel>
+        </BFInputContainer>
+        {tosError && (
+          <Text align='left' color='accent2' size={0.8}>
+            {tosError}
+          </Text>
+        )}
+      </BFGroup>
+      <BFGroup>
+        {dateError && (
+          <Text align='left' color='accent2' size={0.8}>
+            {dateError}
+          </Text>
+        )}
+      </BFGroup>
 
       <SingleButtonContainer>
         <Button type='submit' color='accent3' position='right'>
           book table
         </Button>
       </SingleButtonContainer>
-    </BTFContainer>
+    </BFContainer>
   );
 };

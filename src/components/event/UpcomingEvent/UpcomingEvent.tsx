@@ -1,7 +1,9 @@
 import { FC } from 'react';
+import IsLoading from '@/components/layout/IsLoading';
 import { IEventListItem } from '@/libs/interfaces/Event.interface';
-import { LinkButton, LinkButtonSK } from '@/styles/buttons';
+import { LinkButton } from '@/styles/buttons';
 import { PageSection } from '@/styles/page';
+import { Text } from '@/styles/typography';
 import { displayDate } from '@/utils/displayDate';
 import {
   UEContainer,
@@ -9,13 +11,7 @@ import {
   UEImage,
   UEDescriptionContainer,
   UETitle,
-  UEDescription,
   UEButtonContainer,
-  UEImageContainerSK,
-  UETitleSK,
-  UEDescriptionSK,
-  UEDateSK,
-  UEDate,
 } from './UpcomingEvent.style';
 
 type UpcomingEventProps = {
@@ -27,48 +23,37 @@ export const UpcomingEvent: FC<UpcomingEventProps> = ({
   isLoading,
   event,
 }: UpcomingEventProps) => {
-  if (isLoading) {
-    return (
-      <PageSection>
+  return event ? (
+    <PageSection>
+      {isLoading ? (
+        <IsLoading />
+      ) : (
         <UEContainer>
-          <UEImageContainerSK />
+          <UEImageContainer>
+            <UEImage
+              src={event.thumbnail}
+              alt={`${event.title} thumbnail`}
+              fill
+              priority={false}
+              sizes='420px'
+            />
+          </UEImageContainer>
           <UEDescriptionContainer>
-            <UETitleSK>LOADING</UETitleSK>
-            <UEDateSK>LOADING</UEDateSK>
-            <UEDescriptionSK>LOADING</UEDescriptionSK>
-            <UEDescriptionSK>LOADING</UEDescriptionSK>
-            <UEDescriptionSK>LOADING</UEDescriptionSK>
-            <UEDescriptionSK>LOADING</UEDescriptionSK>
+            <UETitle href={`/events/${event.slug}`}>{event.title}</UETitle>
+            <Text align='left' mb={0.5} bold>
+              {displayDate(event.date)}
+            </Text>
+            <Text align='justify' mb={1}>
+              {event.description}
+            </Text>
             <UEButtonContainer>
-              <LinkButtonSK>LOADING</LinkButtonSK>
+              <LinkButton href={`/events/${event.slug}`} color='accent3'>
+                details
+              </LinkButton>
             </UEButtonContainer>
           </UEDescriptionContainer>
         </UEContainer>
-      </PageSection>
-    );
-  }
-  return event ? (
-    <PageSection>
-      <UEContainer>
-        <UEImageContainer>
-          <UEImage
-            src={event.thumbnail}
-            alt={`${event.title} thumbnail`}
-            fill
-            priority={false}
-          />
-        </UEImageContainer>
-        <UEDescriptionContainer>
-          <UETitle href={`/events/${event.slug}`}>{event.title}</UETitle>
-          <UEDate>{displayDate(event.date)}</UEDate>
-          <UEDescription>{event.description}</UEDescription>
-          <UEButtonContainer>
-            <LinkButton href={`/events/${event.slug}`} color='accent3'>
-              details
-            </LinkButton>
-          </UEButtonContainer>
-        </UEDescriptionContainer>
-      </UEContainer>
+      )}
     </PageSection>
   ) : null;
 };

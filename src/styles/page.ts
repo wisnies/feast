@@ -1,6 +1,5 @@
 import styled from 'styled-components';
 import { device, size } from './devices';
-import { StyledText } from './typography';
 
 export const PageContainer = styled.div`
   width: 100%;
@@ -25,14 +24,5 @@ export const PageSection = styled.section`
 
   &:last-of-type {
     margin-bottom: 0;
-  }
-`;
-
-export const PageParaghaph = styled(StyledText)`
-  text-align: center;
-  font-size: 16px;
-  margin-bottom: 20px;
-  @media ${device.desktop} {
-    font-size: 18px;
   }
 `;

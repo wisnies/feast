@@ -1,20 +1,28 @@
 import { FC } from 'react';
 import { v4 } from 'uuid';
 import { galleryItems } from '@/libs/data/galleryItems';
-import { PageSection } from '@/styles/page';
 import { LinkButton, SingleButtonContainer } from '@/styles/buttons';
-import { MGContainer, MGImage, MGImageContainer } from './HomeGallery.style';
+import { PageSection } from '@/styles/page';
+import { HGContainer, HGImage, HGImageContainer } from './HomeGallery.style';
 
 export const HomeGallery: FC = () => {
   return (
     <PageSection>
-      <MGContainer>
+      <HGContainer>
         {galleryItems.slice(0, 3).map((item) => (
-          <MGImageContainer key={v4()}>
-            <MGImage src={item.src} alt={item.alt} fill priority={false} />
-          </MGImageContainer>
+          <HGImageContainer key={v4()}>
+            <HGImage
+              src={item.src}
+              alt={item.alt}
+              fill
+              priority={false}
+              sizes='(max-width: 768px) 100vw,
+              (max-width: 1200px) 50vw,
+              33vw'
+            />
+          </HGImageContainer>
         ))}
-      </MGContainer>
+      </HGContainer>
       <SingleButtonContainer>
         <LinkButton href='/gallery' color='primary' position='center'>
           gallery

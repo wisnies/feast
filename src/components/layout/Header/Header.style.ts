@@ -11,7 +11,7 @@ export const HeaderContainer = styled.header`
   top: 0;
   left: 0;
   right: 0;
-  z-index: 1000;
+  z-index: 100;
   border-bottom: 4px solid
     ${(props: { theme: ITheme }) => props.theme.color.accent1};
 
@@ -36,12 +36,12 @@ export const HeaderInner = styled.div`
 `;
 export const HeaderLogo = styled(Link)`
   position: relative;
-  width: 150px;
-  height: 60px;
-  background-color: ${(props: { theme: ITheme }) => props.theme.color.primary};
-  &:hover {
-    background-color: ${(props: { theme: ITheme }) =>
-      `${props.theme.color.secondary}10`};
+  width: calc(200px * 0.75);
+  height: calc(82px * 0.75);
+
+  @media ${device.laptop} {
+    width: 200px;
+    height: 82px;
   }
 `;
 
@@ -55,7 +55,7 @@ export const HeaderNav = styled.nav<IsOpenProps>`
   width: 100%;
   height: calc(100vh - 80px);
   max-width: ${size.mobileL};
-  background-color: ${(props: { theme: ITheme }) => props.theme.color.primary};
+  background-color: rgba(0, 0, 0, 0.9);
   transition: transform 0.3s ease;
   transform: ${(props) =>
     props.isOpen ? 'translateX(0)' : 'translatex(100%)'};
@@ -72,6 +72,7 @@ export const HeaderNav = styled.nav<IsOpenProps>`
     max-width: unset;
     width: fit-content;
     height: 100%;
+    background-color: unset;
     transform: translateX(0);
   }
 `;
@@ -102,31 +103,26 @@ export const HeaderNavLink = styled(Link)`
   text-transform: uppercase;
   padding: 10px 0;
   border-bottom: 4px solid
-    ${(props: { theme: ITheme }) => props.theme.color.accent1};
+    ${(props: { theme: ITheme }) => props.theme.color.secondary};
   width: 100%;
   font-family: ${(props: { theme: ITheme }) => props.theme.fontPrimary};
-  font-size: 20px;
+  font-size: 1.4em;
   font-weight: 700;
-  letter-spacing: 1px;
-  color: ${(props: { theme: ITheme }) => props.theme.color.accent1};
+  color: ${(props: { theme: ITheme }) => props.theme.color.secondary};
   &:hover {
-    color: ${(props: { theme: ITheme }) => props.theme.color.secondary};
-    border-color: ${(props: { theme: ITheme }) => props.theme.color.secondary};
-    background-color: ${(props: { theme: ITheme }) =>
-      `${props.theme.color.secondary}10`};
+    color: ${(props: { theme: ITheme }) => props.theme.color.secondaryAlfa};
+    border-color: ${(props: { theme: ITheme }) =>
+      props.theme.color.secondaryAlfa};
   }
 
   @media ${device.laptop} {
     border-bottom: none;
-    font-size: 16px;
+    font-size: 0.8em;
     padding: 5px 10px;
-    color: ${(props: { theme: ITheme }) => props.theme.color.accent1};
-    background-color: ${(props: { theme: ITheme }) =>
-      props.theme.color.primary};
+    color: ${(props: { theme: ITheme }) => props.theme.color.secondary};
   }
   @media ${device.laptopL} {
-    border-bottom: none;
-    font-size: 18px;
+    font-size: 1em;
     padding: 5px 15px;
   }
 `;
@@ -153,9 +149,19 @@ export const HeaderNavBtn = styled.button`
   position: relative;
   overflow-x: hidden;
   background-color: ${(props: { theme: ITheme }) => props.theme.color.primary};
-  &:hover {
-    background-color: ${(props: { theme: ITheme }) =>
-      `${props.theme.color.secondary}10`};
+
+  svg {
+    color: ${(props: { theme: ITheme }) => props.theme.color.secondary};
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 36px;
+
+    @media ${device.tablet} {
+      font-size: 40px;
+    }
   }
 
   @media ${device.tablet} {
@@ -174,16 +180,4 @@ export const HeaderNavBtnGrid = styled.div<IsOpenProps>`
   grid-template-columns: 1fr 1fr;
   transition: transform 0.3s ease;
   transform: translateX(${(props) => (props.isOpen ? '-50%' : '0')});
-`;
-export const HeaderNavBtnIcon = styled.div`
-  height: 100%;
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 36px;
-  color: ${(props: { theme: ITheme }) => props.theme.color.accent1};
-  @media ${device.tablet} {
-    font-size: 40px;
-  }
 `;

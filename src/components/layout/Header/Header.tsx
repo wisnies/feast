@@ -14,7 +14,6 @@ import {
   HeaderNavList,
   HeaderNavMobileLogoContainer,
   HeaderNavBtnGrid,
-  HeaderNavBtnIcon,
 } from './Header.style';
 
 export const Header: FC = () => {
@@ -25,10 +24,10 @@ export const Header: FC = () => {
       <HeaderInner>
         <HeaderLogo href='/'>
           <Image
-            src='/assets/logo/logo-text-a1.png'
+            src='/assets/logo/logo-text-sec-a1.png'
             alt='Feast logo'
             fill
-            sizes='10vw'
+            sizes='(max-width: 1024px) 150px, 200px'
           />
         </HeaderLogo>
         <HeaderNav isOpen={isOpen}>
@@ -44,18 +43,14 @@ export const Header: FC = () => {
               src='/assets/logo/logo-full-2c.png'
               alt='Feast logo'
               fill
-              sizes='10vw'
+              sizes='(max-width: 1024px) 150px, 200px'
             />
           </HeaderNavMobileLogoContainer>
         </HeaderNav>
         <HeaderNavBtn onClick={() => setIsOpen(!isOpen)}>
           <HeaderNavBtnGrid isOpen={isOpen}>
-            <HeaderNavBtnIcon>
-              <AiOutlineMenuFold />
-            </HeaderNavBtnIcon>
-            <HeaderNavBtnIcon>
-              <AiOutlineMenuUnfold />
-            </HeaderNavBtnIcon>
+            <AiOutlineMenuFold />
+            <AiOutlineMenuUnfold />
           </HeaderNavBtnGrid>
         </HeaderNavBtn>
       </HeaderInner>

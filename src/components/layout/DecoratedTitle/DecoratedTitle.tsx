@@ -1,4 +1,5 @@
 import { FC, ReactNode } from 'react';
+import { Title } from '@/styles/typography';
 import {
   TColumn,
   TContainer,
@@ -6,7 +7,6 @@ import {
   TShapeLT,
   TShapeRB,
   TShapeRT,
-  TText,
 } from './DecoratedTitle.style';
 
 type DecoratedTitleProps = {
@@ -22,7 +22,9 @@ export const DecoratedTitle: FC<DecoratedTitleProps> = ({
         <TShapeLT />
         <TShapeLB />
       </TColumn>
-      <TText as='h5'>{children}</TText>
+      <Title as='h5' size={1.8} color='primary'>
+        {children}
+      </Title>
       <TColumn>
         <TShapeRT />
         <TShapeRB />

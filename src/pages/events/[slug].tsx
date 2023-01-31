@@ -4,12 +4,14 @@ import Head from 'next/head';
 import { useRouter } from 'next/router';
 import { dehydrate } from 'react-query';
 import EventDetails from '@/components/event/EventDetails';
+import IsLoading from '@/components/layout/IsLoading';
 import {
   useFetchEventDetails,
   fetchEventDetails,
 } from '@/hooks/useFetchEventDetails.query';
 import { IEvent } from '@/libs/interfaces/Event.interface';
 import queryClient from '@/libs/queryClient';
+import { PageContainer } from '@/styles/page';
 
 type EventDetailsPageProps = {
   slug: string;
@@ -19,17 +21,13 @@ const EventDetailsPage: NextPage<EventDetailsPageProps> = ({
   slug,
 }: EventDetailsPageProps) => {
   const router = useRouter();
-  const { isLoading, isError, data, error } = useFetchEventDetails(slug);
+  const { isLoading, isError, data } = useFetchEventDetails(slug);
 
   if (isError) {
     router.replace(
       `/error`,
       {
         pathname: '/error',
-        query: {
-          code: error.message === 'Event not found' ? 404 : 500,
-          message: error.message,
-        },
       },
       {
         shallow: true,
@@ -49,7 +47,9 @@ const EventDetailsPage: NextPage<EventDetailsPageProps> = ({
           <title>{event.title} | Feast BBQ</title>
         )}
       </Head>
-      {isLoading ? <p>Loading</p> : <EventDetails event={event} />}
+      <PageContainer>
+        {isLoading ? <IsLoading /> : <EventDetails event={event} />}
+      </PageContainer>
     </>
   );
 };

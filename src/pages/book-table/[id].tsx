@@ -4,6 +4,7 @@ import Head from 'next/head';
 import { useRouter } from 'next/router';
 import { dehydrate } from 'react-query';
 import { BookingDetails } from '@/components/booking/BookingDetails/BookingDetails';
+import IsLoading from '@/components/layout/IsLoading';
 import {
   fetchBookingDetails,
   useFetchBookingDetails,
@@ -20,17 +21,13 @@ const BookTableDetailsPage: NextPage<BookingDetailsPageProps> = ({
   id,
 }: BookingDetailsPageProps) => {
   const router = useRouter();
-  const { isLoading, isError, data, error } = useFetchBookingDetails(id);
+  const { isLoading, isError, data } = useFetchBookingDetails(id);
 
   if (isError) {
     router.replace(
       `/error`,
       {
         pathname: '/error',
-        query: {
-          code: error.message === 'Booking not found' ? 404 : 500,
-          message: error.message,
-        },
       },
       {
         shallow: true,
@@ -46,7 +43,7 @@ const BookTableDetailsPage: NextPage<BookingDetailsPageProps> = ({
         <title>Booking Details | Feast BBQ</title>
       </Head>
       <PageContainer>
-        {isLoading ? <p>isLoading</p> : <BookingDetails booking={booking} />}
+        {isLoading ? <IsLoading /> : <BookingDetails booking={booking} />}
       </PageContainer>
     </>
   );

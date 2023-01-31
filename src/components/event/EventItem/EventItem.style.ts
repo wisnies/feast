@@ -3,7 +3,6 @@ import Link from 'next/link';
 import styled from 'styled-components';
 import { ITheme } from '@/libs/interfaces/Theme.interface';
 import { device, size } from '@/styles/devices';
-import { StyledText } from '@/styles/typography';
 
 export const EIContainer = styled.div`
   width: 100%;
@@ -44,25 +43,6 @@ export const EITitle = styled(Link)`
 
   @media ${device.mobileL} {
     font-size: 20px;
-  }
-`;
-export const EIDate = styled(StyledText)`
-  font-size: 14px;
-  font-weight: 700;
-  color: ${(props: { theme: ITheme }) => props.theme.color.textSecondary};
-  margin-bottom: 10px;
-  @media ${device.mobileL} {
-    font-size: 16px;
-  }
-`;
-export const EIDescription = styled(StyledText)`
-  font-size: 14px;
-  text-align: justify;
-  text-justify: newspaper;
-  color: ${(props: { theme: ITheme }) => props.theme.color.textSecondary};
-  margin-bottom: 10px;
-  @media ${device.mobileL} {
-    font-size: 16px;
   }
 `;
 export const EIButtonContainer = styled.div`

@@ -1,6 +1,7 @@
 import { FC, useEffect, useState, useMemo } from 'react';
+import { Text } from '@/styles/typography';
 import { displayDate } from '@/utils/displayDate';
-import { CContainer, CText, StyledCalendar } from './Calendar.style';
+import { CContainer, StyledCalendar } from './Calendar.style';
 
 type CalendarProps = {
   handleDate: (date: Date) => void;
@@ -37,7 +38,9 @@ export const Calendar: FC<CalendarProps> = ({ handleDate }: CalendarProps) => {
         maxDate={maxDate}
       />
       {selectedDate && (
-        <CText>Selected date: {displayDate(selectedDate, false)}</CText>
+        <Text align='center'>
+          Selected date: {displayDate(selectedDate, false)}
+        </Text>
       )}
     </CContainer>
   );

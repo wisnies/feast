@@ -2,7 +2,7 @@ import Link from 'next/link';
 import styled from 'styled-components';
 import { ITheme } from '@/libs/interfaces/Theme.interface';
 import { size, device } from '@/styles/devices';
-import { StyledLink, StyledText, StyledTitle } from '@/styles/typography';
+import { InlineLink, StyledText, StyledTitle } from '@/styles/typography';
 
 export const MHContainer = styled.div`
   position: relative;
@@ -36,50 +36,32 @@ export const MHSectionR = styled(MHSection)`
   align-items: flex-end;
 `;
 export const MHMapLink = styled.a`
-  margin: 10px 0;
-  font-size: 12px;
+  font-size: 1.2em;
   font-family: ${(props: { theme: ITheme }) => props.theme.fontPrimary};
   font-weight: 400;
-  letter-spacing: 2px;
   cursor: pointer;
   color: ${(props: { theme: ITheme }) => props.theme.color.accent1};
-  transition: all 0.2s ease;
+
   padding-top: 2px;
   &:hover {
     color: ${(props: { theme: ITheme }) => props.theme.color.accent1Alfa};
     padding-bottom: 2px;
     padding-top: 0;
   }
-  @media ${device.tablet} {
-    font-size: 14px;
-  }
-  @media ${device.laptopL} {
-    font-size: 16px;
+  @media ${device.laptop} {
+    transition: all 0.3s ease;
   }
 `;
 export const MHTitle = styled(StyledTitle)`
   color: ${(props: { theme: ITheme }) => props.theme.color.secondary};
-  font-size: 22px;
-  margin-bottom: 11px;
-  @media ${device.mobileM} {
-    font-size: 28px;
-    margin-bottom: 14px;
-  }
-  @media ${device.mobileL} {
-    font-size: 32px;
-    margin-bottom: 16px;
-  }
-  @media ${device.tablet} {
-    font-size: 38px;
-    margin-bottom: 19px;
-  }
+  font-size: 2em;
+  margin: 0.5em 0;
+
   @media ${device.laptop} {
-    font-size: 42px;
-    margin-bottom: 21px;
+    font-size: 3em;
   }
-  @media ${device.laptopL} {
-    font-size: 48px;
-    margin-bottom: 24px;
+  @media ${device.desktop} {
+    font-size: 4em;
   }
 `;
 type DataLoadingProps = {
@@ -87,9 +69,11 @@ type DataLoadingProps = {
 };
 export const MHOpaqeContainer = styled.div<DataLoadingProps>`
   width: fit-content;
-  transition: opacity 0.3s ease;
   opacity: ${(props) => (props.isLoading ? 0 : 1)};
   pointer-events: ${(props) => (props.isLoading ? 'none' : 'all')};
+  @media ${device.laptop} {
+    transition: all 0.3s ease;
+  }
 `;
 
 export const MHEvent = styled(Link)`
@@ -123,27 +107,17 @@ export const MHEvent = styled(Link)`
 `;
 export const MHEventTitle = styled(StyledTitle)`
   color: ${(props: { theme: ITheme }) => props.theme.color.accent1};
-  font-size: 14px;
+  text-align: right;
+  font-size: 1em;
   margin-bottom: 5px;
-  @media ${device.mobileL} {
-    font-size: 16px;
-  }
-  @media ${device.tablet} {
-    font-size: 18px;
-  }
   @media ${device.laptop} {
+    font-size: 1.2em;
     transition: all 0.3s ease;
   }
 `;
 export const MHEventText = styled(StyledText)`
-  font-size: 12px;
+  font-size: 1em;
   color: ${(props: { theme: ITheme }) => props.theme.color.secondary};
-  @media ${device.mobileL} {
-    font-size: 14px;
-  }
-  @media ${device.tablet} {
-    font-size: 16px;
-  }
   @media ${device.laptop} {
     transition: all 0.3s ease;
   }
@@ -152,28 +126,23 @@ export const MHEventBox = styled.div`
   width: calc(100vw - 10px);
   max-width: ${size.mobileL};
   background-color: ${(props: { theme: ITheme }) => props.theme.color.primary};
-  padding: 10px 5px;
-
-  @media ${device.mobileL} {
-    padding: 20px 10px;
-  }
+  padding: 1em 0.5em;
 `;
 export const MHEventBoxTitle = styled(StyledTitle)`
   color: ${(props: { theme: ITheme }) => props.theme.color.secondary};
-  font-size: 16px;
-  margin-bottom: 10px;
-  @media ${device.mobileL} {
-    font-size: 20px;
-    margin-bottom: 20px;
-  }
+  font-size: 1em;
+  margin-bottom: 1em;
 `;
-export const MHEventBoxLink = styled(StyledLink)`
+export const MHEventBoxLink = styled(InlineLink)`
   display: flex;
   justify-content: space-between;
-  flex-wrap: nowrap;
-  font-size: 12px;
-  color: ${(props: { theme: ITheme }) => props.theme.color.secondary};
+  font-size: 0.75em;
+  color: ${(props: { theme: ITheme }) =>
+    props.theme.color.secondary} !important;
   margin-bottom: 5px;
+  & span {
+    margin-left: 5px;
+  }
   &:hover {
     color: ${(props: { theme: ITheme }) => props.theme.color.secondaryAlfa};
   }
@@ -181,10 +150,7 @@ export const MHEventBoxLink = styled(StyledLink)`
     margin-bottom: 0;
   }
   @media ${device.mobileM} {
-    font-size: 14px;
-  }
-  @media ${device.mobileL} {
-    font-size: 16px;
+    font-size: 0.9em;
   }
   @media ${device.laptop} {
     transition: all 0.3s ease;
