@@ -1,6 +1,6 @@
 import { FC } from 'react';
-import ContactInfo from '@/components/ContactInfo';
-import FeastMemo from '@/components/FeastMemo';
+import ContactInfo from '@/components/_elements/ContactInfo';
+import FeastMemo from '@/components/_elements/FeastMemo';
 import {
   FooterContainer,
   FooterInner,

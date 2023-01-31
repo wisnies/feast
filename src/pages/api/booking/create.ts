@@ -1,28 +1,20 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
 import HttpException from '@/libs/exceptions/http.exception';
-import { IBookingData, IBooking } from '@/libs/interfaces/Booking.interface';
 import prisma from '@/libs/prisma';
+import { BookingData } from '@/libs/types/Booking.type';
+import type { ErrorRes, BookingRes } from '@/libs/types/Response.type';
 import { bookingSchema } from '@/libs/validation/schemas/booking.schema';
 import { withValidation } from '@/middleware/withValidation.middleware';
 
-type DataRes = {
-  success: boolean;
-  booking: IBooking;
-};
-type ErrorRes = {
-  success: boolean;
-  errors: string[];
-};
-
 const handler = async (
   req: NextApiRequest,
-  res: NextApiResponse<DataRes | ErrorRes>
+  res: NextApiResponse<BookingRes | ErrorRes>
 ) => {
   try {
     if (req.method !== 'POST') {
       throw new HttpException(400, 'Invalid request method');
     }
-    const { name, email, phone, guestCount, date }: IBookingData = req.body;
+    const { name, email, phone, guestCount, date }: BookingData = req.body;
 
     const booking = await prisma.booking.create({
       data: {

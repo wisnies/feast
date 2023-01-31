@@ -1,5 +1,5 @@
 import { FC } from 'react';
-import Title from '@/components/layout/Title';
+import DecoratedTitle from '@/components/layout/DecoratedTitle';
 import { IEventListItem } from '@/libs/interfaces/Event.interface';
 import { PageSection } from '@/styles/page';
 import { ELContainer, ELText } from './EventList.style';
@@ -18,7 +18,9 @@ export const EventList: FC<EventListProps> = ({
 }: EventListProps) => {
   return (
     <PageSection>
-      <Title>{isArchive ? 'Feast Events Archive' : 'Feast Events'}</Title>
+      <DecoratedTitle>
+        {isArchive ? 'Feast Events Archive' : 'Feast Events'}
+      </DecoratedTitle>
       <ELContainer>
         {isLoading && <ELText>Loading...</ELText>}
         {data.map((e) => (

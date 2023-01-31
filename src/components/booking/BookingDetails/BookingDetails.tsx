@@ -1,5 +1,5 @@
 import { FC } from 'react';
-import Title from '@/components/layout/Title';
+import DecoratedTitle from '@/components/layout/DecoratedTitle';
 import { IBooking } from '@/libs/interfaces/Booking.interface';
 import { LinkButton, SingleButtonContainer } from '@/styles/buttons';
 import { PageSection } from '@/styles/page';
@@ -15,7 +15,7 @@ export const BookingDetails: FC<BookingDetailsProps> = ({
 }: BookingDetailsProps) => {
   return (
     <PageSection>
-      <Title>Booking details</Title>
+      <DecoratedTitle>Booking details</DecoratedTitle>
       <BDTitle>Booking information</BDTitle>
       <BDText>Id: {booking.id}</BDText>
       <BDText>Booking registered: {displayDate(booking.createdAt)}</BDText>

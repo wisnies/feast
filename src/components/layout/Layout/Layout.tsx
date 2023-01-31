@@ -1,6 +1,6 @@
 import { FC, ReactNode } from 'react';
 import { ThemeProvider } from 'styled-components';
-import BackToTopButton from '@/components/BackToTopButton';
+import BackToTopButton from '@/components/layout/BackToTopButton';
 import Footer from '@/components/layout/Footer';
 import Header from '@/components/layout/Header';
 import { theme } from '@/styles/theme';

@@ -1,11 +1,10 @@
-import { FC } from 'react';
+import { NextPage } from 'next';
 import Head from 'next/head';
-import Gallery from '@/components/Gallery';
 import OffHero from '@/components/hero/OffHero';
-import { LinkButton, SingleButtonContainer } from '@/styles/buttons';
-import { PageContainer, PageSection } from '@/styles/page';
+import Gallery from '@/components/pageSections/Gallery';
+import { PageContainer } from '@/styles/page';
 
-const GalleryPage: FC = () => {
+const GalleryPage: NextPage = () => {
   return (
     <>
       <Head>
@@ -13,14 +12,7 @@ const GalleryPage: FC = () => {
       </Head>
       <OffHero text='Gallery | Feast BBQ' />
       <PageContainer>
-        <PageSection>
-          <Gallery />
-          <SingleButtonContainer>
-            <LinkButton href='/' color='primary' position='center'>
-              Homepage
-            </LinkButton>
-          </SingleButtonContainer>
-        </PageSection>
+        <Gallery />
       </PageContainer>
     </>
   );

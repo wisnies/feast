@@ -1,20 +1,11 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
 import HttpException from '@/libs/exceptions/http.exception';
-import { IBooking } from '@/libs/interfaces/Booking.interface';
 import prisma from '@/libs/prisma';
-
-type DataRes = {
-  success: boolean;
-  booking: IBooking;
-};
-type ErrorRes = {
-  success: boolean;
-  errors: string[];
-};
+import type { BookingRes, ErrorRes } from '@/libs/types/Response.type';
 
 const handler = async (
   req: NextApiRequest,
-  res: NextApiResponse<DataRes | ErrorRes>
+  res: NextApiResponse<BookingRes | ErrorRes>
 ) => {
   try {
     if (req.method !== 'GET') {

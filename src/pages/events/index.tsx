@@ -1,53 +1,20 @@
 import { useState } from 'react';
 import { GetServerSideProps, NextPage } from 'next';
 import Head from 'next/head';
-import { dehydrate, useQuery, UseQueryResult } from 'react-query';
+import { dehydrate } from 'react-query';
 import EventList from '@/components/event/EventList';
 import UpcomingEvent from '@/components/event/UpcomingEvent';
 import OffHero from '@/components/hero/OffHero';
-import {
-  IUpcomingEventRes,
-  IEventListRes,
-} from '@/libs/interfaces/Response.interface';
-import {
-  fetchUpcomingEvent,
-  fetchUpcomingEvents,
-  fetchArchivedEvents,
-} from '@/libs/query';
+import { fetchEvents, useFetchEvents } from '@/hooks/useFetchEvents.query';
 import queryClient from '@/libs/queryClient';
 import { Button, ButtonContainer, LinkButton } from '@/styles/buttons';
 import { PageContainer, PageSection } from '@/styles/page';
 
 const EventsPage: NextPage = () => {
   const [showArchive, setShowArchive] = useState(false);
-  const {
-    isLoading: isLoadingUpcomingEvent,
-    data: dataUpcomingEvent,
-  }: UseQueryResult<IUpcomingEventRes, Error> = useQuery<
-    IUpcomingEventRes,
-    Error
-  >(['events/fetchUpcoming'], fetchUpcomingEvent);
 
-  const {
-    isLoading: isLoadingUpcomingEvents,
-    data: dataUpcomingEvents,
-  }: UseQueryResult<IEventListRes, Error> = useQuery<IEventListRes, Error>(
-    ['events/fetchUpcomingList'],
-    fetchUpcomingEvents,
-    {
-      enabled: !!dataUpcomingEvent?.event,
-    }
-  );
-  const {
-    isLoading: isLoadingArchivedEvents,
-    data: dataArchivedEvents,
-  }: UseQueryResult<IEventListRes, Error> = useQuery<IEventListRes, Error>(
-    ['events/fetchArchivedList'],
-    fetchArchivedEvents,
-    {
-      enabled: showArchive,
-    }
-  );
+  const upcomingEventsQuery = useFetchEvents('upcoming', true);
+  const archivedEventsQuery = useFetchEvents('archived', showArchive);
 
   return (
     <>
@@ -57,13 +24,21 @@ const EventsPage: NextPage = () => {
       <OffHero text='Events | Feast BBQ' />
       <PageContainer>
         <UpcomingEvent
-          isLoading={isLoadingUpcomingEvent}
-          event={dataUpcomingEvent ? dataUpcomingEvent.event : null}
+          isLoading={upcomingEventsQuery.isLoading}
+          event={
+            upcomingEventsQuery.data?.events
+              ? upcomingEventsQuery.data.events[0]
+              : null
+          }
         />
         <EventList
           isArchive={false}
-          isLoading={isLoadingUpcomingEvents}
-          data={dataUpcomingEvents ? dataUpcomingEvents.events : []}
+          isLoading={upcomingEventsQuery.isLoading}
+          data={
+            upcomingEventsQuery.data?.events
+              ? upcomingEventsQuery.data.events.slice(1)
+              : []
+          }
         />
 
         <PageSection>
@@ -82,8 +57,12 @@ const EventsPage: NextPage = () => {
         {showArchive && (
           <EventList
             isArchive
-            isLoading={isLoadingArchivedEvents}
-            data={dataArchivedEvents ? dataArchivedEvents.events : []}
+            isLoading={archivedEventsQuery.isLoading}
+            data={
+              archivedEventsQuery.data?.events
+                ? archivedEventsQuery.data.events
+                : []
+            }
           />
         )}
       </PageContainer>
@@ -92,8 +71,8 @@ const EventsPage: NextPage = () => {
 };
 
 export const getServerSideProps: GetServerSideProps = async () => {
-  await queryClient.prefetchQuery(['events/fetchUpcoming'], () =>
-    fetchUpcomingEvent()
+  await queryClient.prefetchQuery(['events/fetch', 'upcoming'], () =>
+    fetchEvents('upcoming')
   );
   return {
     props: {

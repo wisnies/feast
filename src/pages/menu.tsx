@@ -1,10 +1,10 @@
-import { FC } from 'react';
+import { NextPage } from 'next';
 import Head from 'next/head';
 import OffHero from '@/components/hero/OffHero';
-import Menu from '@/components/Menu';
+import Menu from '@/components/pageSections/Menu';
 import { PageContainer } from '@/styles/page';
 
-const MenuPage: FC = () => {
+const MenuPage: NextPage = () => {
   return (
     <>
       <Head>

@@ -1,6 +1,7 @@
 import { FC, useState } from 'react';
 import Image from 'next/image';
 import { AiOutlineMenuFold, AiOutlineMenuUnfold } from 'react-icons/ai';
+import { v4 } from 'uuid';
 import { navItems } from '@/libs/data/navItems.data';
 import {
   HeaderContainer,
@@ -33,7 +34,7 @@ export const Header: FC = () => {
         <HeaderNav isOpen={isOpen}>
           <HeaderNavList>
             {navItems.map((item) => (
-              <HeaderNavItem key={item.id} onClick={() => setIsOpen(false)}>
+              <HeaderNavItem key={v4()} onClick={() => setIsOpen(false)}>
                 <HeaderNavLink href={item.href}>{item.label}</HeaderNavLink>
               </HeaderNavItem>
             ))}

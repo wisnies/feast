@@ -1,6 +1,6 @@
-import { ITheme } from '@/libs/interfaces/Theme.interface';
+import type { Theme } from '@/libs/types/Theme.type';
 
-export const theme: ITheme = {
+export const theme: Theme = {
   fontPrimary: "'Montserrat', sans-serif",
   fontDecorated: "'Archivo Black', sans-serif",
   color: {

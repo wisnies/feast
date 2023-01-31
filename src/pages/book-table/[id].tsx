@@ -3,11 +3,14 @@ import { GetServerSideProps, NextPage } from 'next';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
 import { dehydrate } from 'react-query';
-import { fetchBooking, useFetchBooking } from '@/hooks/useFetchBooking';
+import { BookingDetails } from '@/components/booking/BookingDetails/BookingDetails';
+import {
+  fetchBookingDetails,
+  useFetchBookingDetails,
+} from '@/hooks/useFetchBookingDetails.query';
 import { IBooking } from '@/libs/interfaces/Booking.interface';
 import queryClient from '@/libs/queryClient';
 import { PageContainer } from '@/styles/page';
-import { BookingDetails } from '@/components/booking/BookingDetails/BookingDetails';
 
 type BookingDetailsPageProps = {
   id: string;
@@ -17,7 +20,7 @@ const BookTableDetailsPage: NextPage<BookingDetailsPageProps> = ({
   id,
 }: BookingDetailsPageProps) => {
   const router = useRouter();
-  const { isLoading, isError, data, error } = useFetchBooking(id);
+  const { isLoading, isError, data, error } = useFetchBookingDetails(id);
 
   if (isError) {
     router.replace(
@@ -64,8 +67,8 @@ export const getServerSideProps: GetServerSideProps<
   }
   const { id } = ctx.params;
 
-  await queryClient.prefetchQuery(['booking/fetch', id], () =>
-    fetchBooking(id)
+  await queryClient.prefetchQuery(['booking/fetchDetails', id], () =>
+    fetchBookingDetails(id)
   );
 
   return {

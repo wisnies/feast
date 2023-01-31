@@ -1,8 +1,10 @@
-import dotenv from 'dotenv-safe';
+import dotenv from 'dotenv';
 import { Html, Head, Main, NextScript } from 'next/document';
 import '@/libs/global.d';
+import { validateEnv } from '@/libs/validateEnv';
 
 dotenv.config();
+validateEnv();
 
 const Document = () => {
   return (

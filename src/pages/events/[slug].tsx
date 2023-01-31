@@ -2,11 +2,13 @@ import { ParsedUrlQuery } from 'querystring';
 import { GetServerSideProps, NextPage } from 'next';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
-import { dehydrate, useQuery, UseQueryResult } from 'react-query';
+import { dehydrate } from 'react-query';
 import EventDetails from '@/components/event/EventDetails';
+import {
+  useFetchEventDetails,
+  fetchEventDetails,
+} from '@/hooks/useFetchEventDetails.query';
 import { IEvent } from '@/libs/interfaces/Event.interface';
-import { IEventRes } from '@/libs/interfaces/Response.interface';
-import { fetchEvent } from '@/libs/query';
 import queryClient from '@/libs/queryClient';
 
 type EventDetailsPageProps = {
@@ -17,11 +19,7 @@ const EventDetailsPage: NextPage<EventDetailsPageProps> = ({
   slug,
 }: EventDetailsPageProps) => {
   const router = useRouter();
-
-  const { isLoading, isError, data, error }: UseQueryResult<IEventRes, Error> =
-    useQuery<IEventRes, Error>(['events/fetchDetails', slug], () =>
-      fetchEvent(slug)
-    );
+  const { isLoading, isError, data, error } = useFetchEventDetails(slug);
 
   if (isError) {
     router.replace(
@@ -72,7 +70,7 @@ export const getServerSideProps: GetServerSideProps<
   const { slug } = ctx.params;
 
   await queryClient.prefetchQuery(['events/fetchDetails', slug], () =>
-    fetchEvent(slug)
+    fetchEventDetails(slug)
   );
 
   return {

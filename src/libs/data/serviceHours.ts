@@ -1,4 +1,4 @@
-import { IServiceHours } from '@/libs/interfaces/ServiceHours.interface';
+import { IServiceHours } from '@/libs/interfaces/data.interface';
 
 export const serviceHours: IServiceHours[] = [
   {

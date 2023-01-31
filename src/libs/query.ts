@@ -1,9 +1,4 @@
-import {
-  IUpcomingEventRes,
-  IEventListRes,
-  IEventRes,
-  IHeroEventsRes,
-} from './interfaces/Response.interface';
+import { IEventListItemRes, IEventRes } from './interfaces/Response.interface';
 
 const fetchUpcomingEvent = async (): Promise<IUpcomingEventRes> => {
   const res = await fetch('http://localhost:3000/api/events/upcoming');
@@ -31,17 +26,6 @@ const fetchArchivedEvents = async (): Promise<IEventListRes> => {
     return res.json();
   }
   throw new Error('Unable to fetch archived event data');
-};
-
-const fetchEvent = async (slug: string): Promise<IEventRes> => {
-  const res = await fetch(`http://localhost:3000/api/events/${slug}`);
-  if (res.ok) {
-    return res.json();
-  }
-  if (res.status === 404) {
-    throw new Error('Event not found');
-  }
-  throw new Error('Unable to fetch event data');
 };
 
 const fetchHeroEvents = async (): Promise<IHeroEventsRes> => {

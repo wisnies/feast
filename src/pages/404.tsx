@@ -1,13 +1,16 @@
-import { FC } from 'react';
+import { NextPage } from 'next';
 import Head from 'next/head';
+import { PageContainer } from '@/styles/page';
 
-const NotFoundPage: FC = () => {
+const NotFoundPage: NextPage = () => {
   return (
     <>
       <Head>
         <title>Not found</title>
       </Head>
-      <h1>404</h1>
+      <PageContainer>
+        <h1>Error</h1>
+      </PageContainer>
     </>
   );
 };

@@ -1,4 +1,9 @@
-export interface IEventData {
+import { Pricing, Timeline } from '@/libs/types/Event.type';
+
+export interface IEvent {
+  id: string;
+  createdAt: Date;
+  updatedAt: Date;
   title: string;
   date: string | Date;
   slug: string;
@@ -6,34 +11,15 @@ export interface IEventData {
   description: string;
   header: string;
   body: string[];
-  pricing: {
-    title: string;
-    data: { item: string; discount: number }[];
-  };
-  timeline: {
-    title: string;
-    data: { event: string; hour: string }[];
-  };
+  pricing: Pricing;
+  timeline: Timeline;
 }
 
-export interface IEvent extends IEventData {
-  id: string;
-  createdAt: Date;
-  updatedAt: Date;
-}
-
-export interface IEventMeta {
+export interface IEventListItem {
   id: string;
   title: string;
   date: Date;
   slug: string;
-}
-export interface IEventFeatured extends IEventMeta {
-  thumbnail: string;
-  description: string;
-}
-
-export interface IEventListItem extends IEventMeta {
   thumbnail: string;
   description: string;
 }

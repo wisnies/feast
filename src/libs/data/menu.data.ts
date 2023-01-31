@@ -1,4 +1,4 @@
-import { IMenu } from '../interfaces/Menu.interface';
+import { IMenu } from '@/libs/interfaces/data.interface';
 
 export const menu: IMenu = {
   categories: [

@@ -1,6 +1,6 @@
-import { IEventData } from '../interfaces/Event.interface';
+import { EventData } from '@/libs/types/Event.type';
 
-export const events: IEventData[] = [
+export const events: EventData[] = [
   {
     title: 'Feast BBQ - January new years eve celebration barbecue',
     date: '2024-01-01T18:00:00Z',

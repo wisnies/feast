@@ -1,7 +1,7 @@
 import { NextPage } from 'next';
 import Head from 'next/head';
-import BookTable from '@/components/BookTable';
 import OffHero from '@/components/hero/OffHero';
+import BookTable from '@/components/pageSections/BookTable';
 import { PageContainer } from '@/styles/page';
 
 const BookTablePage: NextPage = () => {
