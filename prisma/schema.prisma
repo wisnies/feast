@@ -22,13 +22,13 @@ model Event {
   timeline    String
 }
 
-model Reservation {
+model Booking {
   id         String   @id @default(uuid())
   createdAt  DateTime @default(now())
   updatedAt  DateTime @updatedAt
   name       String
   email      String
-  phone      String
-  guestCount String
+  phone      Int
+  guestCount Int
   date       DateTime
 }

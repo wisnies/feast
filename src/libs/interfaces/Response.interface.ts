@@ -1,3 +1,4 @@
+import { IBooking } from './Booking.interface';
 import { IEvent, IEventListItem, IEventMeta } from './Event.interface';
 
 export interface IHeroEventsRes {
@@ -14,4 +15,11 @@ export interface IUpcomingEventRes {
 
 export interface IEventRes {
   event: IEvent | null;
+}
+
+export interface ICreateBookingRes {
+  booking: IBooking;
+}
+export interface IBookingRes {
+  booking: IBooking;
 }

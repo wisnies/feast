@@ -1,7 +1,8 @@
 import { FC, FormEvent, useState, useCallback } from 'react';
+import { useCreateBookingMutation } from '@/hooks/useCreateBookingMutation';
 import { useStringInput } from '@/hooks/useStringInput';
-import { IBookTableFormData } from '@/libs/interfaces/BookTable.interface';
-import { schema } from '@/libs/validation/schemas/bookTable.schema';
+import { IBookingData } from '@/libs/interfaces/Booking.interface';
+import { bookingSchema } from '@/libs/validation/schemas/booking.schema';
 import { validate } from '@/libs/validation/validate';
 import { Button, SingleButtonContainer } from '@/styles/buttons';
 import {
@@ -39,6 +40,8 @@ export const BookTableForm: FC<BookTableProps> = ({ date }: BookTableProps) => {
   const [tosError, setTosError] = useState('');
   const [dateError, setDateError] = useState('');
 
+  const mutation = useCreateBookingMutation();
+
   const displayErrors = useCallback(
     (errors: string[]) => {
       errors.forEach((e) => {
@@ -47,7 +50,7 @@ export const BookTableForm: FC<BookTableProps> = ({ date }: BookTableProps) => {
         if (e.includes(`"email"`))
           setEmailError(e.replace(`"email"`, 'This field'));
         if (e.includes(`"phone"`))
-          setPhoneError(e.replace(`"phone"`, 'This field'));
+          setPhoneError('You must provide valid phone number');
         if (e.includes(`"guestCount"`))
           setGuestCountError(e.replace(`"guestCount"`, 'This field'));
         if (e.includes(`"tos"`))
@@ -74,25 +77,34 @@ export const BookTableForm: FC<BookTableProps> = ({ date }: BookTableProps) => {
     setTosError('');
     setDateError('');
 
-    const bookTableFormData: IBookTableFormData = {
+    const data: IBookingData & { tos: boolean } = {
       name,
       email,
-      phone,
+      phone: Number(phone),
       guestCount: Number(guestCount),
+      // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+      date: date!,
       tos,
-      date,
     };
-    const errors = await validate(bookTableFormData, schema.bookTable);
+    const errors = await validate(data, bookingSchema.create);
     if (errors.length > 0) {
       displayErrors(errors);
       return;
     }
 
-    resetName();
-    resetEmail();
-    resetPhone();
-    resetGuestCount();
-    setTos(false);
+    try {
+      await mutation.mutateAsync(data);
+
+      resetName();
+      resetEmail();
+      resetPhone();
+      resetGuestCount();
+      setTos(false);
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    } catch (err: any) {
+      setTos(false);
+      displayErrors(JSON.parse(err.message));
+    }
   };
 
   return (
@@ -150,7 +162,7 @@ export const BookTableForm: FC<BookTableProps> = ({ date }: BookTableProps) => {
           <BTFCheckbox
             type='checkbox'
             isError={!!tosError}
-            value={tos}
+            checked={tos}
             onChange={() => setTos(!tos)}
           />
           <BTFSpan>
