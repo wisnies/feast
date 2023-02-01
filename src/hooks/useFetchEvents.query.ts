@@ -2,11 +2,16 @@ import { useQuery, UseQueryResult } from 'react-query';
 import { EventListItemRes } from '@/libs/types/Response.type';
 
 export const fetchEvents = async (
-  mode: 'upcoming' | 'archived'
+  mode: 'upcoming' | 'archived',
+  url?: string
 ): Promise<EventListItemRes> => {
-  const res = await fetch(
-    `${process.env.NEXT_PUBLIC_APP_URL}/api/event?mode=${mode}`
-  );
+  let reqUrl = '';
+  if (url) {
+    reqUrl = `${url}/api/event?mode=${mode}`;
+  } else {
+    reqUrl = `/api/event?mode=${mode}`;
+  }
+  const res = await fetch(reqUrl);
   const parsedRes = await res.json();
   if (parsedRes.success) {
     return {

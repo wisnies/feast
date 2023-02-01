@@ -7,6 +7,7 @@ import UpcomingEvent from '@/components/event/UpcomingEvent';
 import OffHero from '@/components/hero/OffHero';
 import { fetchEvents, useFetchEvents } from '@/hooks/useFetchEvents.query';
 import queryClient from '@/libs/queryClient';
+import { returnUrl } from '@/libs/returnUrl';
 import { Button, ButtonContainer, LinkButton } from '@/styles/buttons';
 import { PageContainer, PageSection } from '@/styles/page';
 
@@ -70,9 +71,10 @@ const EventsPage: NextPage = () => {
   );
 };
 
-export const getServerSideProps: GetServerSideProps = async () => {
+export const getServerSideProps: GetServerSideProps = async (ctx) => {
+  const url = returnUrl(ctx);
   await queryClient.prefetchQuery(['events/fetch', 'upcoming'], () =>
-    fetchEvents('upcoming')
+    fetchEvents('upcoming', url)
   );
   return {
     props: {

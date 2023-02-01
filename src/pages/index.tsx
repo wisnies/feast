@@ -8,6 +8,7 @@ import HomeGallery from '@/components/pageSections/HomeGallery';
 import ServiceHours from '@/components/pageSections/ServiceHours';
 import { fetchEvents, useFetchEvents } from '@/hooks/useFetchEvents.query';
 import queryClient from '@/libs/queryClient';
+import { returnUrl } from '@/libs/returnUrl';
 import { PageContainer } from '@/styles/page';
 
 const HomePage: NextPage = () => {
@@ -35,9 +36,11 @@ const HomePage: NextPage = () => {
   );
 };
 
-export const getServerSideProps: GetServerSideProps = async () => {
+export const getServerSideProps: GetServerSideProps = async (ctx) => {
+  const url = returnUrl(ctx);
+
   await queryClient.prefetchQuery(['events/fetch', 'upcoming'], () =>
-    fetchEvents('upcoming')
+    fetchEvents('upcoming', url)
   );
   return {
     props: {

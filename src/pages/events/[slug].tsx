@@ -11,6 +11,7 @@ import {
 } from '@/hooks/useFetchEventDetails.query';
 import { IEvent } from '@/libs/interfaces/Event.interface';
 import queryClient from '@/libs/queryClient';
+import { returnUrl } from '@/libs/returnUrl';
 import { PageContainer } from '@/styles/page';
 
 type EventDetailsPageProps = {
@@ -67,10 +68,11 @@ export const getServerSideProps: GetServerSideProps<
       notFound: true,
     };
   }
+  const url = returnUrl(ctx);
   const { slug } = ctx.params;
 
   await queryClient.prefetchQuery(['events/fetchDetails', slug], () =>
-    fetchEventDetails(slug)
+    fetchEventDetails(slug, url)
   );
 
   return {

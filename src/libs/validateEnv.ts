@@ -5,7 +5,7 @@ export const validateEnv = (): void => {
     NODE_ENV: str({
       choices: ['development', 'production'],
     }),
-    NEXT_PULIC_APP_URL: str({
+    NEXT_PUBLIC_APP_URL: str({
       default: 'http://localhost:3000',
     }),
   });

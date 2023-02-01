@@ -11,6 +11,7 @@ import {
 } from '@/hooks/useFetchBookingDetails.query';
 import { IBooking } from '@/libs/interfaces/Booking.interface';
 import queryClient from '@/libs/queryClient';
+import { returnUrl } from '@/libs/returnUrl';
 import { PageContainer } from '@/styles/page';
 
 type BookingDetailsPageProps = {
@@ -62,10 +63,11 @@ export const getServerSideProps: GetServerSideProps<
       notFound: true,
     };
   }
+  const url = returnUrl(ctx);
   const { id } = ctx.params;
 
   await queryClient.prefetchQuery(['booking/fetchDetails', id], () =>
-    fetchBookingDetails(id)
+    fetchBookingDetails(id, url)
   );
 
   return {

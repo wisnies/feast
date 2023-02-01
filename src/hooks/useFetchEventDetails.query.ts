@@ -1,10 +1,17 @@
 import { useQuery, UseQueryResult } from 'react-query';
 import { EventRes } from '@/libs/types/Response.type';
 
-export const fetchEventDetails = async (slug: string): Promise<EventRes> => {
-  const res = await fetch(
-    `${process.env.NEXT_PUBLIC_APP_URL}/api/event/${slug}`
-  );
+export const fetchEventDetails = async (
+  slug: string,
+  url?: string
+): Promise<EventRes> => {
+  let reqUrl = '';
+  if (url) {
+    reqUrl = `${url}/api/event/${slug}`;
+  } else {
+    reqUrl = `/api/event/${slug}`;
+  }
+  const res = await fetch(reqUrl);
   const parsedRes = await res.json();
   if (parsedRes.success) {
     return {
