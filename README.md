@@ -1,7 +1,7 @@
 ## Feast BBQ
 Fake restaurant site using Next.js
 
-Deployed project: [link](https://feast-ten.vercel.app/)
+Deployed project: [link](https://feast-6ce2tes3j-mateuszwisniewskikonto-gmailcom.vercel.app/)
 
 #### Features:
 * data fetching using rect-query
